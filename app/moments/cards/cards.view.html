@@ -1,0 +1,11 @@
+<!--
+  This resize stands for upstream height handling issue of angularGrid
+-->
+<div class="container wrapper-cards" angular-grid="vm.momentsOnShow" ag-id="gallery" ag-infinite-scroll="vm.loadMore()" resize>
+  <div class="dynamic-grid" ng-repeat="moment in vm.momentsOnShow track by moment.time">
+    <!--
+      TODO: Check if simplify directive params is possible
+    -->
+    <card moment="moment" index="$index"></card>
+  </div>
+</div>

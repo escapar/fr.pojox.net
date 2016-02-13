@@ -1,0 +1,13 @@
+<div class="grid">
+  <div class="card-image" ng-repeat="url in vm.moment.image">
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+    <img ng-src="{{url}}" class="grid-img"></img>
+  </div>
+  <div ng-class="vm.moment.featured? 'white-text' : ''" class="card-content">
+    <p>{{vm.moment.text}}</p>
+    <div class="left-align" ng-class="vm.moment.featured? 'yellow-text' : 'grey-text'">{{vm.moment.time*1000 | date:'dd/MM/yy HH:mm':vm.checkAndOutputUTC()}} {{vm.checkAndOutputUTC() === '+0100' ? '冬令时':'夏令时'}}</div>
+    <div class="yellow-text right-align" ng-if="vm.moment.featured">★Featured</div>
+  </div>
+</div>

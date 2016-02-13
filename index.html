@@ -1,0 +1,45 @@
+<!--
+  TODO: Build up a compiling workflow with Gulp + Browserify
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Presqu'île - Wechat Moments Archive of POJOa @ France</title>
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+  <link rel="stylesheet" href="node_modules/angular-materialize/css/style.css">
+
+  <!--
+    TODO : Must be Handled Automaticly
+  -->
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-scroll/angular-scroll.min.js"></script>
+  <script src="libs/angular-materialize.js"></script> <!-- JS Modified by myself -->
+  <script src="node_modules/ui-router/release/angular-ui-router.min.js"></script>
+
+  <script src="libs/angulargrid.min.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app/app.module.js"></script>
+  <script src="app/moments/moments.js"></script>
+  <script src="app/moments/cards/cards.controller.js"></script>
+  <script src="app/moments/cards/cards.resize.directive.js"></script>
+
+  <script src="component/component.module.js"></script>
+  <script src="component/card/card.js"></script>
+  <script src="component/card/card-content.js"></script>
+  <script src="component/card/card-control.js"></script>
+  <script src="component/date-nav/date-nav.js"></script>
+  <script src="component/app-nav/app-nav.js"></script>
+  <script src="app.config.js"></script>
+</head>
+<body>
+  <app-nav></app-nav>
+  <div id="main-view" ui-view></div>
+</body>
+</html>
