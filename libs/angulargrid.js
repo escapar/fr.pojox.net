@@ -523,7 +523,7 @@
                     single(img).addClass('img-loading');
                   },
                   isLoaded: function(img) {
-                    $(img).parent().find('.progress').addClass('img-loaded');
+                    $(img).parent().parent().find('.progress').addClass('img-loaded');
                     single(img).removeClass('img-loading').addClass('img-loaded');
                   },
                   onLoad: function(img) {
@@ -534,7 +534,7 @@
                         reflowPending = false;
                       }, 100);
                     }
-                    $(img).parent().find('.progress').addClass('img-loaded');
+                    $(img).parent().parent().find('.progress').addClass('img-loaded');
                     single(img).removeClass('img-loading').addClass('img-loaded');
                   },
                   onFullLoad: function() {

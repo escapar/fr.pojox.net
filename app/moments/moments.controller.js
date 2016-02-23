@@ -4,7 +4,7 @@ angular.module('app.modules')
 function momentsCtrl ($scope, $http, $state, appEvent) {
   var vm = this;
   vm.selectedMonth = [];
-  vm.monthNeeded = ['1409','1410','1411','1412'];
+  vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
   vm.displayMonth = displayMonth;
   vm.currentSelectedMonth = {} ;
   // TODO: function to add in next releases

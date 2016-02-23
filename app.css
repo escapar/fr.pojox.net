@@ -11,7 +11,28 @@
 }
 .wrapper-cards{
   position:relative;
-  z-index : 1 !important;
+}
+.slider .slides li{
+  position:absolute !important;
+
+  z-index:auto !important;
+
+}
+
+.slider .slides li.active{
+  position:absolute !important;
+
+  z-index:auto !important;
+
+}
+.slider .slides li img{
+  position : absolute;
+  top : 0;
+}
+
+#materialbox-overlay{
+  z-index:999 !important;
+
 }
 .grid {
     list-style: none;
@@ -66,6 +87,9 @@
   bottom : 45px;
 }
 
+.material-placeholder{
+  height : 100%;
+}
 .card-title {
   margin-left : 10px ;
 }

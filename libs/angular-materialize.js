@@ -33,17 +33,26 @@
                     height: '=',
                     transition: '=',
                     interval: '=',
-                    indicators: '='
+                    indicators: '=',
+                    imgs:'='
                 },
                 link: function(scope, element, attrs) {
-                    element.addClass("slider");
-                    $timeout(function(){
-                        element.slider({
-                            height: (angular.isDefined(scope.height)) ? scope.height : 400,
-                            transition: (angular.isDefined(scope.transition)) ? scope.transition : 500,
-                            interval: (angular.isDefined(scope.interval)) ? scope.interval : 6000,
-                            indicators: (angular.isDefined(scope.indicators)) ? scope.indicators : true
-                        });
+                    var ulElem = element.children(); // ul element
+                    var unreg = scope.$watch(function() {
+                        return ulElem.length === scope.imgs.length && scope.imgs.length; // check if all "li" are generated
+                    }, function() {
+                      // at this point, the ul is rendered
+                      var indicator = true;
+                      if(scope.imgs.length<2){
+                        var indicator = false;
+                      }
+                      element.parent().slider({
+                          height: (angular.isDefined(scope.height)) ? scope.height : 400,
+                          transition: (angular.isDefined(scope.transition)) ? scope.transition : 500,
+                          interval: (angular.isDefined(scope.interval)) ? scope.interval : 6000,
+                          indicators: ((angular.isDefined(scope.indicators)) ? scope.indicators : true )&&indicator
+                      });
+                      unreg(); // unregister the watcher for performance, since the init function only need to be called once
                     });
 
                 }
