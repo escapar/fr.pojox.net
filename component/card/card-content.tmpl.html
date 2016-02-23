@@ -1,5 +1,8 @@
+<!--
+  TODO: Enhancement of Image displaying
+-->
 <div class="grid">
-  <div class="card-image" ng-repeat="url in vm.moment.image">
+  <div class="card-image" ng-repeat="url in vm.moment.image track by $index">
     <div class="progress">
       <div class="indeterminate"></div>
     </div>

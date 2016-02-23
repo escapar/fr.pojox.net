@@ -4,12 +4,19 @@
 <nav>
   <div class="container">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo left clickable">Presqu'île</a>
+      <a href="#" class="brand-logo left clickable">
+        {{::vm.appTitle}}
+      </a>
       <ul ng-repeat="nav in vm.navs" class="right">
         <!--
         <li><a class="clickable" ng-click="vm.toggleSettings()">Settings</a></li>
         -->
-        <li><a class="clickable" ng-click="vm.gotoState(nav.state)">{{::nav.title}}</a></li>
+        <li>
+          <a class="clickable" ng-click="vm.gotoState(nav.state)">{{::nav.title}}
+            <span ng-if="nav.title.indexOf('About')>-1" class="new badge">{{::vm.appVersion}}</span>
+
+          </a>
+        </li>
       </ul>
     </div>
   </div>

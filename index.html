@@ -24,28 +24,30 @@
   <script src="libs/angular-materialize.js"></script> <!-- JS Modified by myself -->
   <script src="node_modules/ui-router/release/angular-ui-router.min.js"></script>
 
-  <script src="libs/angulargrid.min.js"></script>
+  <script src="libs/angulargrid.js"></script>
   <script src="app.module.js"></script>
   <script src="libs/angular-pubsub.js"></script> <!-- JS Modified by myself -->
 
   <script src="component/app-nav/app-nav.provider.js"></script>
 
-  <script src="app/app.module.js"></script>
-  <script src="app/moments/moments.js"></script>
+  <script src="app/app.modules.module.js"></script>
+  <script src="app/moments/moments.controller.js"></script>
 
-  <script src="app/moments/cards/cards.controller.js"></script>
+  <script src="app/moments/cards/cards.directive.js"></script>
   <script src="app/moments/cards/cards.resize.directive.js"></script>
 
   <script src="component/component.module.js"></script>
-  <script src="component/card/card.js"></script>
-  <script src="component/card/card-content.js"></script>
-  <script src="component/card/card-control.js"></script>
-  <script src="component/date-nav/date-nav.js"></script>
-  <script src="component/app-nav/app-nav.js"></script>
-  <script src="app/moments/moments.config.js"></script>
-  <script src="app/about/about.config.js"></script>
+  <script src="component/card/card.directive.js"></script>
+  <script src="component/card/card-content.directive.js"></script>
+  <script src="component/card/card-control.directive.js"></script>
+  <script src="component/date-nav/date-nav.directive.js"></script>
+  <script src="component/app-nav/app-nav.directive.js"></script>
+  <script src="app/moments/moments.nav.config.js"></script>
+  <script src="app/about/about.nav.config.js"></script>
 
-  <script src="app.config.js"></script>
+  <script src="app.router.config.js"></script>
+  <script src="app.const.config.js"></script>
+
 </head>
 <body>
   <app-nav></app-nav>
