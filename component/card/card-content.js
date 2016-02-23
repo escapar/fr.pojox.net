@@ -6,6 +6,7 @@ function cardContent(angularGridInstance){
     controller: cardContentCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card-content.tmpl.html',
+    require: '^^cardCtrl',
     scope: {
       moment: '='
     },

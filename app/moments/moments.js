@@ -1,7 +1,7 @@
 angular.module('app.modules')
        .controller('momentsCtrl',momentsCtrl);
 
-function momentsCtrl ($scope,$http,$state) {
+function momentsCtrl ($scope, $http, $state, appEvent) {
   var vm = this;
   vm.selectedMonth = [];
   vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
@@ -64,5 +64,5 @@ function momentsCtrl ($scope,$http,$state) {
   }
 
   ///////////////////
-  $scope.$on('monthSwitched',switchMonth);
+  appEvent.subscribe('monthSwitched', switchMonth, $scope);
 }

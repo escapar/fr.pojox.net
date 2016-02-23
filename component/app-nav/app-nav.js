@@ -10,16 +10,18 @@ function appNav($state){
   };
   return directive;
 
-  function appNavCtrl($scope) {
+  function appNavCtrl(appNav,$scope,appEvent) {
     var vm = this;
+    vm.navs = appNav.navConfig;
     vm.gotoState = gotoState;
     vm.toggleSettings = toggleSettings;
+
     function gotoState(state){
       $state.go(state);
     }
 
     function toggleSettings(){
-      $scope.$broadcast('toggleSettings');
+      appEvent.publish('toggleSettings');
     }
   }
 }

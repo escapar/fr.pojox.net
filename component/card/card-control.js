@@ -6,6 +6,7 @@ function cardControl(){
     controller: cardControlCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card-control.tmpl.html',
+    require: '^^cardCtrl',
     scope: {
       index : '='
     },
@@ -19,7 +20,7 @@ function cardControl(){
     vm.outputData = outputData;
     vm.feature = feature;
     vm.weired = weired;
-    
+
     ////////////////////////////////
 
     function deleteData(){

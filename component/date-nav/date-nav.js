@@ -14,7 +14,7 @@ function dateNav(){
   };
   return directive;
 
-  function dateNavCtrl($rootScope,$document,$state,$scope) {
+  function dateNavCtrl($rootScope,$document,$state,$scope,appEvent) {
     var vm = this;
     vm.monthSelected = 0;
     vm.displayMonth = displayMonth;
@@ -40,7 +40,7 @@ function dateNav(){
     function displayMonth(month){
       vm.monthSelected = month;
       $state.go('moments.specified', { month: month });
-      $rootScope.$broadcast('monthSwitched',month);
+      appEvent.publish('monthSwitched',month);
     }
 
     function getNavDateLabel(month){
@@ -50,13 +50,13 @@ function dateNav(){
     }
 
     function toggleFeatured(){
-      $rootScope.$broadcast('toggleFeatured',vm.featuredOnly);
+      appEvent.publish('toggleFeatured',vm.featuredOnly);
     }
 
     function toggleWeired(){
-      $rootScope.$broadcast('toggleWeired',vm.safeOnly);
+      appEvent.publish('toggleWeired',vm.safeOnly);
     }
 
-    $scope.$on('toggleSettings',toggleSettings);
+    appEvent.subscribe('toggleSettings',toggleSettings, $scope);
   }
 }

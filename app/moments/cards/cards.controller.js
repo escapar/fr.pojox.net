@@ -13,7 +13,7 @@ function cards(){
   };
   return directive;
 
-  function cardsCtrl($scope,$filter,angularGridInstance) {
+  function cardsCtrl($scope,$filter,angularGridInstance,appEvent) {
     var vm = this;
     var initialCardNum = 9;
     var newCardPerPage = 6;
@@ -81,9 +81,8 @@ function cards(){
       }
     }
 
-    //TODO: EventService to handle all these stuff
-    $scope.$on('toggleFeatured',handleToggle('featuredOnly'));
-    $scope.$on('toggleWeired',handleToggle('safeOnly'));
+    appEvent.subscribe('toggleFeatured', handleToggle('featuredOnly'), $scope);
+    appEvent.subscribe('toggleWeired', handleToggle('safeOnly'), $scope);
 
     $scope.$watch('vm.moments', function (value) {
         // Recerive new monthly Data

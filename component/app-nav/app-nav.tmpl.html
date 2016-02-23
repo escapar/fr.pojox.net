@@ -1,16 +1,15 @@
 <!--
-  TODO: Define app-wide nav in app.config.js
   TODO: Define App name and logo in app.config.js
 -->
 <nav>
   <div class="container">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo left clickable">Presqu'île</a>
-      <ul class="right">
+      <ul ng-repeat="nav in vm.navs" class="right">
         <!--
         <li><a class="clickable" ng-click="vm.toggleSettings()">Settings</a></li>
         -->
-        <li><a class="clickable" ng-click="vm.gotoState('about')">Changelog</a></li>
+        <li><a class="clickable" ng-click="vm.gotoState(nav.state)">{{::nav.title}}</a></li>
       </ul>
     </div>
   </div>
