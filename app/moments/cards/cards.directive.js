@@ -18,9 +18,9 @@ function cards(){
     var initialCardNum = 9;
     var newCardPerPage = 6;
     var currentCard = 0;
-    var momentsOnShowMirror = [];
+    var displayedMomentsMirror = [];
 
-    vm.momentsOnShow = [];
+    vm.displayedMoments = [];
     vm.loadMore = loadMore;
     vm.featuredOnly = false;
     vm.safeOnly = true;
@@ -29,16 +29,16 @@ function cards(){
     /////////////
 
     function init(){
-      vm.momentsOnShow = [];
-      momentsOnShowMirror = [];
+      vm.displayedMoments = [];
+      displayedMomentsMirror = [];
       currentCard = 0;
       pushMoments(initialCardNum);
     }
 
     function deleteData(event,time){
-      for(var i = 0 ; i< vm.momentsOnShow.length; i++){
-        if(vm.momentsOnShow[i].time === time){
-          vm.momentsOnShow.splice(i,1);
+      for(var i = 0 ; i< vm.displayedMoments.length; i++){
+        if(vm.displayedMoments[i].time === time){
+          vm.displayedMoments.splice(i,1);
           currentCard--;
           return;
         }
@@ -65,9 +65,9 @@ function cards(){
         if(vm.moments == null || vm.moments[currentCard] == null)
           return;
         //Ensure correct number of cards displayed when $filter is off
-        momentsOnShowMirror.push(vm.moments[currentCard]);
+        displayedMomentsMirror.push(vm.moments[currentCard]);
         if(displayFilter(vm.moments[currentCard])){
-          vm.momentsOnShow.push(vm.moments[currentCard])
+          vm.displayedMoments.push(vm.moments[currentCard])
         }else{
           //Ensure Right Number Of Cards Added
           i--;
@@ -90,7 +90,7 @@ function cards(){
         vm[param] = display;
         angularGridInstance.gallery.refresh();
         pushMoments(newCardPerPage);
-        vm.momentsOnShow = $filter('filter')(momentsOnShowMirror,displayFilter);
+        vm.displayedMoments = $filter('filter')(displayedMomentsMirror,displayFilter);
       }
     }
 

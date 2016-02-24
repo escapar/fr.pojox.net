@@ -1,0 +1,15 @@
+<div class="row" style="margin-bottom:0px">
+  <div class="col s11">
+    <ul class="tabs container" tabs>
+      <li class="tab" ng-repeat="tab in vm.tabs" ng-click="vm.displaySection(tab)">
+        <a class="clickable {{vm.active.title === tab.title ? 'active' : ''}}">{{::tab.title}}</a>
+      </li>
+    </ul>
+  </div>
+  <!--
+    TODO MINOR : Reconsider how to order this element and its padding
+  -->
+  <div class="col s1" style="padding:6px" ng-click="vm.displaySettings = ! vm.displaySettings">
+    <a class="btn-flat">SETTINGS</a>
+  </div>
+</div>

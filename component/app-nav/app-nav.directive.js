@@ -16,14 +16,12 @@ function appNav($state){
     vm.appVersion = APP_CONST.version;
     vm.navs = appNav.navConfig;
     vm.gotoState = gotoState;
-    vm.toggleSettings = toggleSettings;
+
+    /////////////////////////
 
     function gotoState(state){
       $state.go(state);
     }
 
-    function toggleSettings(){
-      appEvent.publish('toggleSettings');
-    }
   }
 }

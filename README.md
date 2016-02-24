@@ -2,16 +2,20 @@
   A website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).
 
 # TODO
-  Goal for V2 : Make this repo a more generic one to fit more cases of cascading display.   
-  APP-WIDE : use built-in height calculation policy of angular-grid    
-  APP-WIDE : Build up a compiling workflow with Gulp + Browserify   
-  date-nav : UI Enhancement , divide sub-nav into directives , refractor.    
-  card-content : Enhancement of Image Displaying.    
+  Goal for V2 : Make this repo a more generic one to fit more cases of cascading display.
+
+  App-wide [Major] : Build up a compiling workflow with Gulp + Browserify    
+  Cards [Moderate] : Use built-in height calculation policy of angular-grid    
+  Card And Fonctionality [Moderate] : comment and tag function to add in further releases
+  UI [Minor] : Enhancement
 
 # Usage
-`npm install`
+  `npm install`
 
-`npm start`
+  `npm start`
 
-# Keyword in Chinese
-瀑布流
+# Keywords
+  瀑布流 AngularJS Materialize Instagram-Cascading Displaying Infinite-Scroll
+
+# License
+  I SET UP NO RESTRICTIONS BUT USE AT YOUR OWN RISK

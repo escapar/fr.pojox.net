@@ -1,9 +1,10 @@
 <!--
-  TODO : use built-in height calculation policy of angular-grid
+  TODO MODERATE: use built-in height calculation policy of angular-grid
   This resize stands for upstream height handling issue of angularGrid
 -->
-<div class="container wrapper-cards" angular-grid="vm.momentsOnShow" ag-id="gallery" ag-infinite-scroll="vm.loadMore()" resize>
-  <div class="dynamic-grid" ng-repeat="moment in vm.momentsOnShow track by moment.time">
+
+<div class="container wrapper-cards" angular-grid="vm.displayedMoments" ag-id="gallery" ag-infinite-scroll="vm.loadMore()" resize>
+  <div class="dynamic-grid" ng-repeat="moment in vm.displayedMoments track by moment.time">
     <card moment="moment" idx="$index"></card>
   </div>
 </div>

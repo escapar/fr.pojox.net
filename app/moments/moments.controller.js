@@ -1,20 +1,39 @@
 angular.module('app.modules')
        .controller('momentsCtrl',momentsCtrl);
 
-function momentsCtrl ($scope, $http, $state, appEvent) {
+function momentsCtrl ($scope, $http, $state, $document, appEvent) {
   var vm = this;
-  vm.selectedMonth = [];
-  vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
-  vm.displayMonth = displayMonth;
-  vm.currentSelectedMonth = {} ;
-  // TODO: function to add in next releases
-  vm.addComment = addComment;
-  vm.addTag = addTag;
-  //Everything is in vm.dataz
+  //Temporarily treat vm.dataz as a local datasource
   vm.dataz = [];
+  vm.monthNeeded = ['1409','1410','1411','1412'];
+  vm.tabs = [];
+  vm.currentSelectedTab = {};
+  vm.subNavSettings = [
+    {
+      type: 'toggle',
+      title: 'Featured Only',
+      value: false,
+      event: 'toggleFeatured'
+    },
 
+    {
+      type: 'toggle',
+      title: 'Hide Selfie',
+      value: true,
+      event: 'toggleWeired'
+    }
+  ];
+
+  // TODO MODERATE: comment and tag function to add in further releases
+  vm.displayMonth = displayMonth;
+  vm.scrollTop = scrollTop;
   activate();
   ////////////////////////////////
+
+  function scrollTop(){
+    $document.scrollTop(64, 2000);
+  }
+
 
   function outputData(){
     var output = [];
@@ -26,6 +45,14 @@ function momentsCtrl ($scope, $http, $state, appEvent) {
     });
     var newWindow = window.open();
     newWindow.document.write('<pre>'+JSON.stringify(output,undefined, 4)+'</pre>');
+
+    function checkMonth(time){
+      for(var i = 0; i < vm.monthNeeded.length; i++){
+        if(vm.monthNeeded[i].indexOf(time) >= 0) return true;
+      }
+      return false;
+    }
+
   }
 
   function deleteData(event,time){
@@ -47,51 +74,61 @@ function momentsCtrl ($scope, $http, $state, appEvent) {
       if(vm.dataz[i].time === month){
         vm.selectedMonth = vm.dataz[i];
         vm.currentSelectedMonth = month;
+        vm.currentSelectedTab = getTabByMonth(month);
         return;
+      }
+    }
+
+    function getTabByMonth(yearAndMonth){
+      return {
+        title: getNavDateLabel(yearAndMonth),
+        state: 'moments.specified',
+        stateParam : { month: yearAndMonth }
       }
     }
   }
 
   function activate(){
+    vm.tabs = generateSubNavTabs();
     return $http.get('data/data.json').success(getDataSuccess);
+
+    function generateSubNavTabs(){
+      var tabs=[];
+      vm.monthNeeded.forEach(function(yearAndMonth){
+        tabs.push(
+          {
+            title: getNavDateLabel(yearAndMonth) ,
+            state: 'moments.specified',
+            stateParam : { month: yearAndMonth }
+          }
+        );
+      });
+      return tabs;
+    }
   }
 
   function getDataSuccess(data){
     vm.dataz = data;
     timeInUrl = vm.monthNeeded[0];
 
-    // TODO: Check why it is not possible to use $stateParams.month
     if($state.params.month != null){
       timeInUrl = $state.params.month;
     }
     displayMonth(timeInUrl);
   }
 
-  function checkMonth(time){
-    for(var i = 0; i < vm.monthNeeded.length; i++){
-      if(vm.monthNeeded[i].indexOf(time) >= 0) return true;
-    }
-    return false;
+  function switchMonth(event,tab){
+    displayMonth(tab.stateParam.month);
   }
 
-  function addComment(data,id,comment){
-    data[id].comment = comment;
-  }
-
-  function addTag(data,id,tagId){
-    if(data[id].tag == null){
-      data[id].tag = [];
-    }
-    data[id].tag.push(tagId);
-  }
-
-
-  function switchMonth(event,month){
-    displayMonth(month);
+  function getNavDateLabel(yearAndMonth){
+    var year = yearAndMonth.substring(0, 2);
+    var month = yearAndMonth.substring(2, 4);
+    return month+'/'+year;
   }
 
   ///////////////////
-  appEvent.subscribe('monthSwitched', switchMonth, $scope);
+  appEvent.subscribe('subNavSectionSwitched', switchMonth, $scope);
   appEvent.subscribe('outputData', outputData, $scope);
   appEvent.subscribe('deleteData', deleteData, $scope);
 

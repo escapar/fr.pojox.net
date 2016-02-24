@@ -1,0 +1,7 @@
+<div class="switch card-action row">
+  <label ng-repeat="setting in vm.settings">
+    {{setting.title}}
+    <input ng-if="setting.type === 'toggle'" type="checkbox" ng-click="vm.handleSettings(setting)" ng-model="setting.value">
+    <span ng-if="setting.type === 'toggle'" class="lever"></span>
+  </label>
+</div>
