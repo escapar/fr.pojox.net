@@ -1,8 +1,8 @@
-# presquile-website
-  A website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).
+# angular-infinite-scroll-example
+  Built for a website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).
 
 # TODO
-  Goal for V2 : Make this repo a more generic one to fit more cases of cascading display.
+  Goal for V2 : Make this repo a more generic one to fit more cases of infinit cascading flow (whatever) display.
 
   App-wide [Major] : Build up a compiling workflow with Gulp + Browserify    
   Cards [Moderate] : Use built-in height calculation policy of angular-grid    
