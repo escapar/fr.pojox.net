@@ -68,7 +68,10 @@
 .card {
   position : inherit !important
 }
-
+.tabs {
+  overflow-x : hidden !important;
+  width : 103% !important;
+}
 .progress {
   margin : 0 !important;
 }
