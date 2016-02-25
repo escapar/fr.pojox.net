@@ -1,4 +1,4 @@
-# angular-infinite-scroll-example
+# angular-masonry-example
   Built for a website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).
 
 # TODO
