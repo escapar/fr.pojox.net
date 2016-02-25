@@ -6,19 +6,13 @@ function card(){
     controller: cardCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card.tmpl.html',
-    link: postLink,
     scope: {
-      moment: '=',
-      idx: '='
+      content: '=',
+      dstShow: '@'
     },
-    require: '^^cards',
     bindToController: true
   };
   return directive;
-
-  function postLink(scope, element, attrs, cardsCtrl){
-    scope.vm.cardsCtrl = cardsCtrl;
-  }
 
   function cardCtrl() {
     var vm = this;

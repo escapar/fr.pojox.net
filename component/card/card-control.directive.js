@@ -14,12 +14,12 @@ function cardControl(){
 
   function postLink(scope, element, attrs, cardCtrl){
     scope.cardCtrl = cardCtrl;
-    scope.vm.moment = cardCtrl.moment;
-    scope.vm.idx = cardCtrl.idx;
+    scope.vm.content = cardCtrl.content;
   }
 
-  function cardControlCtrl($scope,appEvent) {
+  function cardControlCtrl($scope,appEvent,APP_CONST) {
     var vm = this;
+    vm.prod = APP_CONST.production;
     vm.deleteData = deleteData;
     vm.outputData = outputData;
     vm.feature = feature;
@@ -28,16 +28,16 @@ function cardControl(){
     ////////////////////////////////
 
     function deleteData(){
-      appEvent.publish('deleteData',vm.moment.time);
+      appEvent.publish('deleteData',vm.content.time);
     }
     function outputData(){
       appEvent.publish('outputData');
     }
     function feature(){
-      $scope.cardCtrl.moment.featured = true;
+      $scope.cardCtrl.content.featured = true;
     }
     function weired(){
-      $scope.cardCtrl.moment.safe = false;
+      $scope.cardCtrl.content.safe = false;
     }
   }
 }

@@ -1,0 +1,7 @@
+<div class="container wrapper-cards" resize>
+  <div angular-grid="vm.displayedData" ag-id="cards" ag-infinite-scroll="vm.loadMore()" ag-scroll-container=".wrapper-cards">
+    <div class="dynamic-grid" ng-repeat="data in vm.displayedData track by data.time">
+      <card dst-show="true" content="data"></card>
+    </div>
+  </div>
+</div>

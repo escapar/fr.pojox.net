@@ -1,5 +1,5 @@
-<div class="card-action">
-  <a class="clickable" ng-click="vm.deleteData(vm.index)">Delete</a>
+<div ng-if="vm.prod" class="card-action">
+  <a class="clickable" ng-click="vm.deleteData()">Delete</a>
   <a class="clickable" ng-click="vm.outputData()">Stringify</a>
   <a class="clickable" ng-click="vm.feature()">Feature</a>
   <a class="clickable" ng-click="vm.weired()">Weired</a>

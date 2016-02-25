@@ -32,6 +32,7 @@ function subNavTabs(){
     }
 
     function displaySection(tab){
+      scrollTop();
       $state.go(tab.state, tab.stateParam);
       appEvent.publish('subNavSectionSwitched',tab);
     }

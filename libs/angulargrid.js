@@ -1,18 +1,19 @@
 /*
-    angularGrid.js v 0.5.1
+    angularGrid.js v 0.5.3
     Author: Sudhanshu Yadav
-    Copyright (c) 2015 Sudhanshu Yadav - ignitersworld.com , released under the MIT license.
+    Copyright (c) 2015-2016 Sudhanshu Yadav - ignitersworld.com , released under the MIT license.
     Demo on: http://ignitersworld.com/lab/angulargrid/demo1.html
     Documentation and download on https://github.com/s-yadav/angulargrid
 */
 
 /* module to create pinterest like responsive masonry grid system for angular */
-;(function(angular, window, undefined) {
+;
+(function(angular, window, undefined) {
   "use strict";
   //defaults for plugin
   var defaults = {
     gridWidth: 300, //minumum width of a grid, this may increase to take whole space of container
-    gutterSize: 20, //spacing between two grid,
+    gutterSize: 10, //spacing between two grid,
     gridNo: 'auto', // grid number, by default calculate auto matically
     direction: 'ltor', //direction of grid item
     refreshOnImgLoad: true, // to make a refresh on image load inside container
@@ -25,7 +26,7 @@
   };
 
   var $ = angular.element;
-  var camelCaseToHyphenCase = function(str){
+  var camelCaseToHyphenCase = function(str) {
     return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
@@ -90,7 +91,7 @@
             direction: '=agDirection',
             cssGrid: '=agCssGrid',
             options: '=agOptions',
-            agId : '@',
+            agId: '@',
             pageSize: '=agPageSize',
             performantScroll: '=agPerformantScroll',
             scrollContainer: '@agScrollContainer',
@@ -103,6 +104,7 @@
               win = $($window),
               agId = scope.agId || scope.dep_agId, // angularGridId is deprecated
               listElms,
+              reflowCount = 0, //to keep tack of times reflowgrid been called
               timeoutPromise;
 
             element.addClass('angular-grid');
@@ -113,16 +115,16 @@
             var options;
 
             //check deprecated options
-            ['gridWidth','gutterSize','refreshOnImgLoad','direction','options','cssGrid','agId'].forEach(function(key){
+            ['gridWidth', 'gutterSize', 'refreshOnImgLoad', 'direction', 'options', 'cssGrid', 'agId'].forEach(function(key) {
               var depKey = camelCaseToHyphenCase(key);
-              var correctKey = 'ag-'+camelCaseToHyphenCase(key);
-              if(key == 'options') depKey = "angular-grid-options";
-              if(key == 'agId'){
+              var correctKey = 'ag-' + camelCaseToHyphenCase(key);
+              if (key == 'options') depKey = "angular-grid-options";
+              if (key == 'agId') {
                 depKey = "angular-grid-id";
                 correctKey = "ag-id";
               }
-              if(scope['dep_'+key] !== undefined){
-                if(console && console.warn) console.warn(depKey+' is deprecated. Use '+correctKey+' instead in template.');
+              if (scope['dep_' + key] !== undefined) {
+                if (console && console.warn) console.warn(depKey + ' is deprecated. Use ' + correctKey + ' instead in template.');
               }
             });
 
@@ -131,14 +133,13 @@
               Object.keys(defaults).forEach(function(key) {
                 if (scope[key] !== undefined) {
                   options[key] = scope[key];
-                }
-                else if(scope['dep_'+key] !== undefined){
-                  options[key] = scope['dep_'+key];
+                } else if (scope['dep_' + key] !== undefined) {
+                  options[key] = scope['dep_' + key];
                 }
               });
               options = angular.extend({}, defaults, options, scope.options || scope.dep_options);
               if (options.cssGrid) options.gutterSize = 0;
-              if(options.pageSize == 'auto'){
+              if (options.pageSize == 'auto') {
                 options.pageSize = window.offsetWidth >= 768 ? 2 : 3;
               }
             }
@@ -284,7 +285,6 @@
               if (scrollNs.isLoading || !scope.model.length) return;
               var scrollHeight = scrollNs.scrollContInfo.scrollHeight,
                 contHeight = scrollNs.scrollContInfo.height;
-
               if (scrollTop >= (scrollHeight - contHeight * (1 + options.infiniteScrollDistance / 100))) {
                 scrollNs.isLoading = true;
                 scope.infiniteScroll();
@@ -302,7 +302,7 @@
 
             setTimeout(function() {
               scrollNs.scrollContInfo = getScrollContainerInfo();
-              scrollNs.scrollContInfo.$elm.on('scroll', scrollHandler);
+              win.on('scroll', scrollHandler);
             }, 0);
 
             //function to get column width and number of columns
@@ -313,7 +313,7 @@
 
               if (options.cssGrid) {
                 clone = $(listElms[0]).clone();
-                clone.css(cloneCss).addClass('ag-no-transition');
+                clone.css(cloneCss).addClass('ag-no-transition ag-clone');
 
                 element.append(clone);
 
@@ -327,8 +327,8 @@
               }
 
               var colWidth = options.gridNo == 'auto' ? options.gridWidth : Math.floor(contWidth / options.gridNo) - options.gutterSize,
-                cols = options.gridNo == 'auto' ? Math.floor(contWidth / (colWidth + options.gutterSize)) : options.gridNo,
-                remainingSpace = (contWidth % (colWidth + options.gutterSize)) + options.gutterSize;
+                cols = options.gridNo == 'auto' ? Math.floor((contWidth + options.gutterSize) / (colWidth + options.gutterSize)) : options.gridNo,
+                remainingSpace = ((contWidth + options.gutterSize) % (colWidth + options.gutterSize));
 
               colWidth = colWidth + Math.floor(remainingSpace / cols);
 
@@ -375,6 +375,8 @@
 
             //function to reflow grids
             function reflowGrids() {
+              reflowCount++;
+
               //claclulate width of all element
               var colInfo = getColWidth(),
                 colWidth = colInfo.width,
@@ -417,7 +419,7 @@
               //get all list items new height
               var clones = listElms.clone();
 
-              clones.addClass('ag-no-transition');
+              clones.addClass('ag-no-transition ag-clone');
 
               var clonesCssObj = angular.extend({}, cloneCss);
               clonesCssObj.width = colWidth + 'px';
@@ -426,82 +428,86 @@
 
               //For cloned element again we have to check if image loaded (IOS only)
 
-              afterImageLoad(clones, {
-                ignoreCheck: function(img) {
-                  return !single(img).hasClass('img-loaded');
-                },
-                onFullLoad: function() {
-                  var listElmHeights = [],
-                    listElmPosInfo = [],
-                    item, i, ln;
+              (function(reflowIndx) {
+                afterImageLoad(clones, {
+                  ignoreCheck: function(img) {
+                    return !single(img).hasClass('img-loaded');
+                  },
+                  onFullLoad: function() {
+                    //if its older reflow don't do any thing
+                    if (reflowIndx < reflowCount) return;
+
+                    var listElmHeights = [],
+                      listElmPosInfo = [],
+                      item, i, ln;
 
 
 
-                  //find height with clones
-                  for (i = 0, ln = clones.length; i < ln; i++) {
-                    listElmHeights.push(clones[i].offsetHeight);
-                  }
-
-                  //set new positions
-                  for (i = 0, ln = listElms.length; i < ln; i++) {
-                    item = single(listElms[i]);
-                    var height = listElmHeights[i];
-                    var top = Math.min.apply(Math, lastRowBottom);
-                    if(isNaN(top)){
-                      top = lastRowBottom[0];
-                    }
-                    var col = lastRowBottom.indexOf(top);
-
-                    //update lastRowBottom value
-                    lastRowBottom[col] = top + height + options.gutterSize;
-                    //set top and left of list items
-                    var posX = col * (colWidth + options.gutterSize);
-
-                    var cssObj = {
-                      position: 'absolute',
-                      top: top + 'px'
-                    };
-
-                    if (options.direction == 'rtol') {
-                      cssObj.right = posX + 'px';
-                    } else {
-                      cssObj.left = posX + 'px';
+                    //find height with clones
+                    for (i = 0, ln = clones.length; i < ln; i++) {
+                      listElmHeights.push(clones[i].offsetHeight);
                     }
 
-                    cssObj.width = colWidth + 'px';
+                    //set new positions
+                    for (i = 0, ln = listElms.length; i < ln; i++) {
+                      item = single(listElms[i]);
+                      var height = listElmHeights[i];
+                      var top = Math.min.apply(Math, lastRowBottom);
+                      var col = lastRowBottom.indexOf(top);
 
-                    //add position info of each grids
-                    listElmPosInfo.push({
-                      top: top,
-                      bottom: top + height
-                    });
+                      //update lastRowBottom value
+                      lastRowBottom[col] = top + height + options.gutterSize;
 
-                    item.css(cssObj).addClass('angular-grid-item');
+                      //set top and left of list items
+                      var posX = col * (colWidth + options.gutterSize);
+
+                      var cssObj = {
+                        position: 'absolute',
+                        top: top + 'px'
+                      };
+
+                      if (options.direction == 'rtol') {
+                        cssObj.right = posX + 'px';
+                      } else {
+                        cssObj.left = posX + 'px';
+                      }
+
+                      cssObj.width = colWidth + 'px';
+
+                      //add position info of each grids
+                      listElmPosInfo.push({
+                        top: top,
+                        bottom: top + height
+                      });
+
+                      item.css(cssObj).addClass('angular-grid-item');
+                    }
+
+                    //set the height of container
+                    var contHeight = Math.max.apply(Math, lastRowBottom);
+                    element.css('height', contHeight + 'px');
+
+                    clones.remove();
+
+                    //update the scroll container info
+                    if (options.performantScroll || scope.infiniteScroll) {
+                      scrollNs.scrollContInfo = getScrollContainerInfo();
+                    }
+
+                    //if performantScroll is enabled calculate the page info, and reflect dom elements to reflect visible pages
+                    if (options.performantScroll) {
+                      scrollNs.lastPage = null;
+                      calculatePageInfo(listElmPosInfo, contHeight, cols);
+                      scrollNs.isBusy = false;
+                      refreshDomElm(scrollNs.lastScrollPosition || 0);
+                    }
+
+                    //re enable infiniteScroll
+                    reEnableInfiniteScroll();
                   }
+                });
+              }(reflowCount));
 
-                  //set the height of container
-                  var contHeight = Math.max.apply(Math, lastRowBottom);
-                  //element.css('height', contHeight + 'px');
-
-                  clones.remove();
-
-                  //update the scroll container info
-                  if(options.performantScroll || scope.infiniteScroll){
-                    scrollNs.scrollContInfo = getScrollContainerInfo();
-                  }
-
-                  //if performantScroll is enabled calculate the page info, and reflect dom elements to reflect visible pages
-                  if (options.performantScroll) {
-                    scrollNs.lastPage = null;
-                    calculatePageInfo(listElmPosInfo, contHeight, cols);
-                    scrollNs.isBusy = false;
-                    refreshDomElm(scrollNs.lastScrollPosition || 0);
-                  }
-
-                  //re enable infiniteScroll
-                  reEnableInfiniteScroll();
-                }
-              });
             }
 
 
@@ -518,6 +524,7 @@
 
                 //add image loading class on list item
                 $listItem.addClass('img-loading');
+
                 afterImageLoad($listItem, {
                   beforeLoad: function(img) {
                     single(img).addClass('img-loading');
@@ -545,6 +552,13 @@
 
             }
 
+            //function to get list elements excluding clones
+            function getListElms() {
+              return $(domToAry(element.children()).filter(function(elm) {
+                return !single(elm).hasClass('ag-clone');
+              }));
+            }
+
             //function to check for ng animation
             function ngCheckAnim() {
               var leavingElm = domToAry(listElms).filter(function(elm) {
@@ -556,7 +570,7 @@
                 } else {
                   single(leavingElm[0]).one('webkitTransitionEnd transitionend msTransitionEnd oTransitionEnd', function() {
                     $timeout(function() {
-                      listElms = element.children();
+                      listElms = getListElms();
                       resolve();
                     });
                   });
@@ -569,7 +583,7 @@
             function watch() {
               scrollNs.isBusy = true;
               $timeout(function() {
-                listElms = element.children();
+                listElms = getListElms();
                 ngCheckAnim().then(function() {
                   //handle images
                   handleImage();
@@ -581,7 +595,7 @@
               });
             }
 
-            scope.$watchCollection('model', watch);
+            scope.$watch('model', watch, true);
 
 
             //watch option for changes

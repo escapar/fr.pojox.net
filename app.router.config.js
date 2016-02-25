@@ -19,7 +19,9 @@ function routeProvider($stateProvider, $urlRouterProvider){
      }).
      state('about', {
        url:'/about',
-       templateUrl: 'app/about/about.html'
+       templateUrl: 'app/about/about.html',
+       controller: 'aboutCtrl',
+       controllerAs: 'vm'
      });
 
 }

@@ -2,8 +2,7 @@
   TODO MINOR: Enhancement of Image displaying
 -->
 <div class="grid">
-
-  <div class="card-image" ng-repeat="url in vm.moment.image track by $index">
+  <div class="card-image" ng-repeat="url in vm.content.image track by $index">
     <div class="progress">
       <div class="indeterminate"></div>
     </div>
@@ -11,17 +10,24 @@
   </div>
 
 <!--
-  <div class="slider" ng-if="vm.moment.image">
-    <ul class="slides" slider imgs="vm.moment.image">
-        <li ng-repeat="url in vm.moment.image track by $index" style="z-index:{{$index}}">
+  <div class="slider" ng-if="vm.content.image">
+    <ul class="slides" slider imgs="vm.content.image">
+        <li ng-repeat="url in vm.content.image track by $index" style="z-index:{{$index}}">
             <img materialboxed class="materialboxed" ng-src="{{::url}}" style="background-image:url('{{::url}}')"> </img>
         </li>
     </ul>
  </div>
  -->
-  <div ng-class="vm.moment.featured? 'white-text' : ''" class="card-content">
-    <p>{{vm.moment.text}}</p>
-    <div class="left-align" ng-class="vm.moment.featured? 'yellow-text' : 'grey-text'">{{vm.moment.time*1000 | date:'dd/MM/yy HH:mm':vm.checkAndOutputUTC()}} {{vm.checkAndOutputUTC() === '+0100' ? '冬令时':'夏令时'}}</div>
-    <div class="yellow-text right-align" ng-if="vm.moment.featured">★Featured</div>
+  <div ng-class="vm.content.featured? 'white-text' : ''" class="card-content">
+    <span ng-if="vm.content.title" class="card-title">
+      {{::vm.content.title}}
+    </span>
+    <p>{{::vm.content.text}}</p>
+    <div class="left-align" ng-class="vm.content.featured? 'yellow-text' : 'grey-text'">
+      {{timeMessage}}
+    </div>
+    <div class="yellow-text right-align" ng-if="vm.content.featured">
+      ★Featured
+    </div>
   </div>
 </div>
