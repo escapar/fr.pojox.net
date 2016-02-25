@@ -7,7 +7,9 @@ function cards(){
     controllerAs: 'vm',
     templateUrl: 'component/cards/cards.view.html',
     scope: {
-      data: '='
+      data: '=',
+      initialCardNum: '@jcInitNum',
+      newCardPerPage: '@jcRefreshNum'
     },
     bindToController: true
   };
@@ -15,8 +17,10 @@ function cards(){
 
   function cardsCtrl($scope,$filter,angularGridInstance,appEvent) {
     var vm = this;
-    var initialCardNum = 9;
-    var newCardPerPage = 6;
+
+    // Defaults
+    var initialCardNum = vm.initialCard  ? parseInt(vm.initialCardNum, 10) : 15;
+    var newCardPerPage = vm.newCardPerPage ? parseInt(vm.newCardPerPage, 10) : 6;
     var currentCard = 0;
     var displayedDataMirror = [];
 
@@ -88,7 +92,7 @@ function cards(){
           display = false;
         }
         vm[param] = display;
-        angularGridInstance.gallery.refresh();
+        angularGridInstance.cards.refresh();
         pushData(newCardPerPage);
         vm.displayedData = $filter('filter')(displayedDataMirror,displayFilter);
       }

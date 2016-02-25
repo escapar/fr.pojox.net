@@ -1,7 +1,0 @@
-<div class="container wrapper-cards" resize>
-  <div angular-grid="vm.displayedMoments" ag-id="gallery" ag-infinite-scroll="vm.loadMore()" ag-scroll-container=".wrapper-cards">
-    <div class="dynamic-grid" ng-repeat="moment in vm.displayedMoments track by moment.time">
-      <card moment="moment" idx="$index"></card>
-    </div>
-  </div>
-</div>

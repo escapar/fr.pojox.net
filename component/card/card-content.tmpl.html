@@ -22,9 +22,11 @@
     <span ng-if="vm.content.title" class="card-title">
       {{::vm.content.title}}
     </span>
-    <p>{{::vm.content.text}}</p>
+    <div>
+    <pre>{{::vm.content.text}}</pre>
+  </div>
     <div class="left-align" ng-class="vm.content.featured? 'yellow-text' : 'grey-text'">
-      {{timeMessage}}
+      {{::vm.timeMessage}}
     </div>
     <div class="yellow-text right-align" ng-if="vm.content.featured">
       ★Featured

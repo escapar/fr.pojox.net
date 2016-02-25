@@ -9,16 +9,17 @@
   z-index: 2;
   width: 100%
 }
-.wrapper-cards{
-  position:relative;
-}
+
 .slider .slides li{
   position:absolute !important;
 
   z-index:auto !important;
 
 }
-
+pre{
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 .slider .slides li.active{
   position:absolute !important;
 
@@ -60,9 +61,7 @@
     visibility: visible;
     opacity: 1;
 }
-.card-title{
-  margin-left : 0 !important;
-}
+
 .clickable {
   cursor: pointer;
 }
@@ -70,10 +69,7 @@
 .card {
   position : inherit !important
 }
-.tabs {
-  overflow-x : hidden !important;
-  width : 103% !important;
-}
+
 .progress {
   margin : 0 !important;
 }
@@ -87,7 +83,9 @@
 .card .card-image img{
   position : inherit !important
 }
-
+.grid .card-title{
+  margin-left:0px;
+}
 .nav-fab {
   bottom : 45px;
 }

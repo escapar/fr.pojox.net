@@ -6,6 +6,7 @@ function cardContent(angularGridInstance){
     controller: cardContentCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card-content.tmpl.html',
+    scope: {},
     require: '^^card',
     compile: compileRefresh,
     bindToController: true
@@ -13,27 +14,27 @@ function cardContent(angularGridInstance){
   return directive;
 
   function postLink(scope, element, attrs, cardCtrl){
-    scope.cardCtrl = cardCtrl;
     scope.vm.content = cardCtrl.content;
     scope.vm.dstShow = cardCtrl.dstShow;
+    scope.vm.utcCn = cardCtrl.utcCn;
   }
 
   function cardContentCtrl($scope, $filter) {
     var vm = this;
-    var unset = $scope.$watch('vm.content.time',handleTime);
-    vm.checkAndOutputUTC = checkAndOutputUTC;
+    vm.timeMessage = '';
     ///////////////////////////
 
-    function handleTime(timestamp,a){
-      $scope.timeMessage = getTimeMessage(timestamp);
+    function handleTime(timestamp){
+      vm.timeMessage = getTimeMessage(timestamp);
       unset();
     }
 
     function getTimeMessage(timestamp){
-      var timeMessage = $filter('date')(vm.content.time, 'dd/MM/yy HH:mm', checkAndOutputUTC(timestamp));
+      var timeMessage = $filter('date')(timestamp*1000, 'dd/MM/yy HH:mm', checkAndOutputUTC(timestamp));
       if(vm.dstShow){
-        var dstMessage = checkAndOutputUTC(timestamp) === '+0100' ? ' Winter Time' : ' Summer Time';
-        timeMessage += dstMessage;
+        timeMessage += checkAndOutputUTC(timestamp) === '+0100' ? ' Winter Time' : ' Summer Time';;
+      } else if(vm.utcCn){
+        timeMessage += ' CST';
       }
       return timeMessage;
     }
@@ -43,10 +44,17 @@ function cardContent(angularGridInstance){
       if(angular.isUndefined(timestamp)) return;
       if(timestamp > 1427587200 && timestamp < 1445731200 || timestamp >1396137600 && timestamp < 1414281600){
         return '+0200';
+      }else if(vm.utcCn){
+        return '+0800';
       }else{
         return '+0100';
       }
     }
+
+    var unset = $scope.$watch('vm.content.time',function handleTime(timestamp){
+      vm.timeMessage = getTimeMessage(timestamp);
+      unset();
+    });
   }
 
   function compileRefresh(element, attrs){
@@ -57,4 +65,7 @@ function cardContent(angularGridInstance){
       post: postLink
     }
   }
+
+  ///////////////////////////
+
 }

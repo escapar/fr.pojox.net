@@ -7,6 +7,7 @@ function cardControl(){
     controllerAs: 'vm',
     templateUrl: 'component/card/card-control.tmpl.html',
     require: '^^card',
+    scope: {},
     link: postLink,
     bindToController: true
   };

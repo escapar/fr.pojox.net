@@ -1,10 +1,10 @@
 <div>
-  <div class="row">
-    <div class="wrapper-date-nav" pushpin pushpin-top="64">
-      <sub-nav sections="vm.tabs" active="vm.currentSelectedTab" settings="vm.subNavSettings"></sub-nav>
-    </div>
+  <div class="wrapper-date-nav" pushpin pushpin-top="64">
+    <sub-nav sections="vm.tabs" active="vm.currentSelectedTab" settings="vm.subNavSettings"></sub-nav>
   </div>
-  <cards data="vm.selectedMonth.moments"></cards>
+  <div class="container">
+    <cards jc-init-num="10" jc-refresh-num="6" data="vm.selectedMonth.moments"></cards>
+  </div>
   <!-- FAB -->
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light red" ng-click="vm.scrollTop()">TOP</a>

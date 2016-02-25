@@ -8,7 +8,8 @@ function card(){
     templateUrl: 'component/card/card.tmpl.html',
     scope: {
       content: '=',
-      dstShow: '@'
+      dstShow: '@',
+      utcCn: '@'
     },
     bindToController: true
   };

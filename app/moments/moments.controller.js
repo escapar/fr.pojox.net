@@ -1,11 +1,11 @@
 angular.module('app.modules')
        .controller('momentsCtrl',momentsCtrl);
 
-function momentsCtrl ($scope, $http, $state, $document, appEvent) {
+function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance) {
   var vm = this;
   //Temporarily treat vm.dataz as a local datasource
   vm.dataz = [];
-  vm.monthNeeded = ['1409','1410','1411','1412'];
+  vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
   vm.tabs = [];
   vm.currentSelectedTab = {};
   vm.subNavSettings = [
@@ -72,7 +72,9 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent) {
   function displayMonth(month){
     for(var i = 0; i < vm.dataz.length; i++){
       if(vm.dataz[i].time === month){
+        vm.selectedMonth = [];
         vm.selectedMonth = vm.dataz[i];
+
         vm.currentSelectedMonth = month;
         vm.currentSelectedTab = getTabByMonth(month);
         return;
