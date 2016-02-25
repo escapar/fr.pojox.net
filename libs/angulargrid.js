@@ -485,7 +485,7 @@
 
                     //set the height of container
                     var contHeight = Math.max.apply(Math, lastRowBottom);
-                    element.css('height', contHeight + 'px');
+                    //element.css('height', contHeight + 'px');
 
                     clones.remove();
 
