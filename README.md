@@ -5,8 +5,8 @@
   Goal for V2 : Make this repo a more generic one to fit more cases of infinit cascading flow (whatever) display.
 
   App-wide [Major] : Build up a compiling workflow with Gulp + Browserify    
-  Cards [Moderate] : Use built-in height calculation policy of angular-grid    
-  Card And Fonctionality [Moderate] : comment and tag function to add in further releases
+  Card [Major] : Generalize card utilization : HTML treatment    
+  Card And Fonctionality [Moderate] : comment and tag function to add in further releases   
   UI [Minor] : Enhancement
 
 # Usage
