@@ -453,6 +453,7 @@
                       item = single(listElms[i]);
                       var height = listElmHeights[i];
                       var top = Math.min.apply(Math, lastRowBottom);
+                      console.log(lastRowBottom);
                       var col = lastRowBottom.indexOf(top);
 
                       //update lastRowBottom value
@@ -485,7 +486,7 @@
 
                     //set the height of container
                     var contHeight = Math.max.apply(Math, lastRowBottom);
-                    //element.css('height', contHeight + 'px');
+                    element.css('height', contHeight + 'px');
 
                     clones.remove();
 
