@@ -71,19 +71,18 @@ function cards(){
         //Ensure correct number of cards displayed when $filter is off
         displayedDataMirror.push(vm.data[currentCard]);
         if(displayFilter(vm.data[currentCard])){
-          vm.displayedData.push(vm.data[currentCard])
+          vm.displayedData.push(vm.data[currentCard]);
         }else{
           //Ensure Right Number Of Cards Added
           i--;
         }
         currentCard++;
       }
+      $scope.$apply();
     }
 
     function loadMore(){
       pushData(newCardPerPage);
-      // Digest is a must or we'll get nothing for ng-repeat
-      $scope.$digest();
     }
 
     function handleToggle(param){
