@@ -27,17 +27,18 @@ Currently not available as a module.
     }]
 
 ###Directives:
-   jc-masonry-cards :     
+   ####jc-masonry-cards    
    `<jc-masonry-cards jc-init-num="10" jc-refresh-num="6" jc-data="vm.selectedMonth.moments"></jc-masonry-cards>`   
 
-   jc-card :     
+   ####jc-card :     
    `<jc-card jc-content="about" jc-show-utc-cn="true"></jc-card>`    
 
-   jc-sub-nav :    
+   ####jc-sub-nav :    
    `<jc-sub-nav jc-sections="vm.tabs" jc-active="vm.currentSelectedTab" jc-settings="vm.jcSubNavSettings"></jc-sub-nav>`    
    Here jc-settings stands for Sub-nav settings toggle and is currently in development    
 
    vm.tabs must be in this form:    
+   
       [{
         title: getNavDateLabel(yearAndMonth) ,
         state: 'moments.specified',
@@ -54,7 +55,6 @@ Currently not available as a module.
 
        angular.module('app')
               .config(navConfig);
-
        function navConfig(jcNavProvider){
          jcNavProvider.$get().addMenu(
            [
@@ -65,8 +65,9 @@ Currently not available as a module.
 
 # App-wide Service
 ### Event Service
-    appEvent.publish('toukoPRPR', param);
-    appEvent.subscribe('toukoPRPR', callBack, $scope);  // $scope to prevent memory leak.
+    `appEvent.publish('toukoPRPR', param);`
+    `appEvent.subscribe('toukoPRPR', callBack, $scope);  // $scope to prevent memory leak.`
+    
     Well you could still use $rootScope.$broadcast if you want :)
 
 # How to run
