@@ -38,15 +38,15 @@ Currently not available as a module.
    Here jc-settings stands for Sub-nav settings toggle and is currently in development    
 
    vm.tabs must be in this form:    
-       [{
-         title: getNavDateLabel(yearAndMonth) ,
-         state: 'moments.specified',
-         stateParam : { month: yearAndMonth }
-       },{
-         title: 'ToukoPRPR' ,
-         state: 'touko.prpr',
-         stateParam : { touko: 'lovelyGirl' }
-       }]    
+      [{
+        title: getNavDateLabel(yearAndMonth) ,
+        state: 'moments.specified',
+        stateParam : { month: yearAndMonth }
+      },{
+        title: 'ToukoPRPR' ,
+        state: 'touko.prpr',
+        stateParam : { touko: 'lovelyGirl' }
+      }]    
 
    jc-nav : `<jc-nav></jc-nav>`    
    Configuration is eventually app-wide.
