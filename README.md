@@ -27,19 +27,19 @@ Currently not available as a module.
     }]
 
 ###Directives:
-   Full-screen Masonry Cards: 
+   Full-screen Masonry Cards:      
    `<jc-masonry-cards jc-init-num="10" jc-refresh-num="6" jc-data="vm.selectedMonth.moments"></jc-masonry-cards>`   
 
    A Single Card:   
    `<jc-card jc-content="about" jc-show-utc-cn="true"></jc-card>`    
    You could specify card title and body in about.title and about.text.    
-   
+
    Sub Navigation:     
    `<jc-sub-nav jc-sections="vm.tabs" jc-active="vm.currentSelectedTab" jc-settings="vm.jcSubNavSettings"></jc-sub-nav>`    
    Here jc-settings stands for Sub-nav settings toggle and is currently in development.    
 
    vm.tabs must be in this form:    
-   
+
       [{
         title: getNavDateLabel(yearAndMonth) ,
         state: 'moments.specified',
@@ -51,8 +51,9 @@ Currently not available as a module.
       }]    
 
    jc-nav : `<jc-nav></jc-nav>`    
-   Configuration is app-wide.
-   You need a config file for each new view.
+   Configuration is app-wide.    
+   You need a config file for each new view.    
+   You could config nav order , the one with smaller value will display first.    
 
        angular.module('app')
               .config(navConfig);
@@ -68,7 +69,7 @@ Currently not available as a module.
 ### Event Service
 `appEvent.publish('toukoPRPR', param);`
 `appEvent.subscribe('toukoPRPR', callBack, $scope);  // $scope to prevent memory leak.`
-    
+
 Well you could still use $rootScope.$broadcast if you want :)
 
 # How to run

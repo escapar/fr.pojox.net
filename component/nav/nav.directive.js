@@ -10,11 +10,11 @@ function jcNav($state){
   };
   return directive;
 
-  function navCtrl(jcNav, $scope, appEvent, APP_CONST) {
+  function navCtrl(jcNav, $scope, $filter, appEvent, APP_CONST) {
     var vm = this;
     vm.appTitle = APP_CONST.title;
     vm.appVersion = APP_CONST.version;
-    vm.navs = jcNav.navConfig;
+    vm.navs = $filter('orderBy')(jcNav.navConfig, jcNav.order, true);
     vm.gotoState = gotoState;
 
     /////////////////////////
