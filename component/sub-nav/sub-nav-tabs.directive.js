@@ -26,7 +26,7 @@ function jcSubNavTabs(){
     ///////////////////////////
 
     function scrollTop(){
-      $document.scrollTop(0, 2000);
+      $document.scrollTop(63.9, 2000);
     }
 
     function displaySection(tab){

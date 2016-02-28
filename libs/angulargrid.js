@@ -492,6 +492,7 @@
                     //update the scroll container info
                     if (options.performantScroll || scope.infiniteScroll) {
                       scrollNs.scrollContInfo = getScrollContainerInfo();
+                      scrollNs.scrollContInfo.scrollHeight = 0;
                     }
 
                     //if performantScroll is enabled calculate the page info, and reflect dom elements to reflect visible pages
@@ -654,7 +655,9 @@
               if (agId) delete angularGridInstance[agId];
               win.off('resize', windowResizeCallback);
               clearTimeout(scrollNs.infiniteScrollTimeout);
-              if (scrollNs.scrollContInfo) scrollNs.scrollContInfo.$elm.off('scroll', scrollHandler);
+              if (scrollNs.scrollContInfo) {
+                scrollNs.scrollContInfo.$elm.off('scroll', scrollHandler);
+              }
             });
           }
         };

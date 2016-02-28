@@ -31,7 +31,7 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
   ////////////////////////////////
 
   function scrollTop(){
-    $document.scrollTop(64, 2000);
+    $document.scrollTop(0, 2000);
   }
 
 
