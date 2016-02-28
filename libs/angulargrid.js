@@ -491,14 +491,14 @@
 
                     //update the scroll container info
 
-                    if(options.init){
-                      scrollNs.scrollContInfo.scrollHeight = 0;
-                      options.init = false;
-                    }
+
                     if (options.performantScroll || scope.infiniteScroll) {
                       scrollNs.scrollContInfo = getScrollContainerInfo();
                     }
-
+                    if(!options.init){
+                      scrollNs.scrollContInfo.scrollHeight = 0;
+                      options.init = true;
+                    }
                     //if performantScroll is enabled calculate the page info, and reflect dom elements to reflect visible pages
                     if (options.performantScroll) {
                       scrollNs.lastPage = null;
