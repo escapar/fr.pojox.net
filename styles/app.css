@@ -66,8 +66,9 @@ pre{
   cursor: pointer;
 }
 
-.card {
-  position : inherit !important
+.angular-grid-item .card {
+  position : inherit !important;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem !important;
 }
 
 .progress {
