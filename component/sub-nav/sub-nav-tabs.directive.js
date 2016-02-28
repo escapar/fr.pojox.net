@@ -1,19 +1,18 @@
 angular.module('app.components')
-       .directive('subNavTabs',subNavTabs);
+       .directive('jcSubNavTabs',jcSubNavTabs);
 
-function subNavTabs(){
+function jcSubNavTabs(){
   var directive = {
     controller: subNavTabsCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/sub-nav/sub-nav-tabs.tmpl.html',
-    require:'^subNav',
+    require:'^jcSubNav',
     link: postLink,
     bindToController: true
   };
   return directive;
 
   function postLink(scope, element, attrs, subNavCtrl){
-    scope.vm.subNavCtrl = subNavCtrl;
     scope.vm.tabs = subNavCtrl.sections;
     scope.vm.active = subNavCtrl.active;
   }
@@ -23,18 +22,17 @@ function subNavTabs(){
 
     vm.displaySection = displaySection;
     vm.displaySettings = false;
-    vm.scrollTop = scrollTop;
 
     ///////////////////////////
 
     function scrollTop(){
-      $document.scrollTop(64, 2000);
+      $document.scrollTop(0, 2000);
     }
 
     function displaySection(tab){
       scrollTop();
       $state.go(tab.state, tab.stateParam);
-      appEvent.publish('subNavSectionSwitched',tab);
+      appEvent.publish('jcSubNavSectionSwitched',tab);
     }
 
   }

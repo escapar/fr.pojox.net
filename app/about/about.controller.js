@@ -19,7 +19,7 @@ function aboutCtrl () {
     {
       title: 'TODO',
       time: 1456420305,
-      text: 'Goal for V2 : Make this repo a more generic one to fit more cases of infinit cascading flow (whatever) display.\nGoal for the future: Create a component-lib called Juicy (namespace: jc)\nApp-wide[Major] : Build up a compiling workflow with Gulp + Browserify\nappNav [Major]: Order by priority\nCard And Fonctionality [Moderate] : comment and tag function to add in further releases',
+      text: 'Goal for V2 : Make this repo a more generic one to fit more cases of infinit cascading flow (whatever) display.\nGoal for the future: Create a component-lib called Juicy (namespace: jc)\nApp-wide[Major] : Build up a compiling workflow with Gulp + Browserify\njcNav [Major]: Order by priority\nCard And Fonctionality [Moderate] : comment and tag function to add in further releases',
       featured: true
     },
     {
@@ -31,7 +31,7 @@ function aboutCtrl () {
     {
       title: 'v1.2 2016.02.24',
       time: 1456243200,
-      text: 'Refractor SubNav\nEnhancement of Picture Displaying\nDisabled Slider (will be taken into account after next major release)\nAdded App Drawer For Mobile Devices\n',
+      text: 'Refractor jcSubNav\nEnhancement of Picture Displaying\nDisabled Slider (will be taken into account after next major release)\nAdded App Drawer For Mobile Devices\n',
     },
     {
       title: 'v1.1 2016.02.23',

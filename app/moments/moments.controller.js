@@ -8,7 +8,7 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
   vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
   vm.tabs = [];
   vm.currentSelectedTab = {};
-  vm.subNavSettings = [
+  vm.jcSubNavSettings = [
     {
       type: 'toggle',
       title: 'Featured Only',
@@ -91,10 +91,10 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
   }
 
   function activate(){
-    vm.tabs = generateSubNavTabs();
+    vm.tabs = generatejcSubNavTabs();
     return $http.get('data/data.json').success(getDataSuccess);
 
-    function generateSubNavTabs(){
+    function generatejcSubNavTabs(){
       var tabs=[];
       vm.monthNeeded.forEach(function(yearAndMonth){
         tabs.push(
@@ -130,7 +130,7 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
   }
 
   ///////////////////
-  appEvent.subscribe('subNavSectionSwitched', switchMonth, $scope);
+  appEvent.subscribe('jcSubNavSectionSwitched', switchMonth, $scope);
   appEvent.subscribe('outputData', outputData, $scope);
   appEvent.subscribe('deleteData', deleteData, $scope);
 

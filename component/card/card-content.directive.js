@@ -1,13 +1,13 @@
 angular.module('app.components')
-       .directive('cardContent',cardContent);
+       .directive('jcCardContent',jcCardContent);
 
-function cardContent(angularGridInstance){
+function jcCardContent(angularGridInstance){
   var directive = {
     controller: cardContentCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card-content.tmpl.html',
     scope: {},
-    require: '^^card',
+    require: '^^jcCard',
     compile: compileRefresh,
     bindToController: true
   };

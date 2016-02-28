@@ -1,20 +1,20 @@
 angular.module('app.components')
-       .directive('appNav',appNav);
+       .directive('jcNav',jcNav);
 
-function appNav($state){
+function jcNav($state){
   var directive = {
-    controller: appNavCtrl,
+    controller: navCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/app-nav/app-nav.tmpl.html',
+    templateUrl: 'component/nav/nav.tmpl.html',
     bindToController: true
   };
   return directive;
 
-  function appNavCtrl(appNav, $scope, appEvent, APP_CONST) {
+  function navCtrl(jcNav, $scope, appEvent, APP_CONST) {
     var vm = this;
     vm.appTitle = APP_CONST.title;
     vm.appVersion = APP_CONST.version;
-    vm.navs = appNav.navConfig;
+    vm.navs = jcNav.navConfig;
     vm.gotoState = gotoState;
 
     /////////////////////////

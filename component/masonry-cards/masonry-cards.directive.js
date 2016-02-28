@@ -1,13 +1,13 @@
 angular.module('app.modules')
-       .directive('cards',cards);
+       .directive('jcMasonryCards',jcMasonryCards);
 
-function cards(){
+function jcMasonryCards(){
   var directive = {
-    controller: cardsCtrl,
+    controller: masonryCardsCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/cards/cards.view.html',
+    templateUrl: 'component/masonry-cards/masonry-cards.view.html',
     scope: {
-      data: '=',
+      data: '=jcData',
       initialCardNum: '@jcInitNum',
       newCardPerPage: '@jcRefreshNum'
     },
@@ -15,7 +15,7 @@ function cards(){
   };
   return directive;
 
-  function cardsCtrl($scope,$filter,angularGridInstance,appEvent) {
+  function masonryCardsCtrl($scope,$filter,angularGridInstance,appEvent) {
     var vm = this;
 
     // Defaults
@@ -78,11 +78,11 @@ function cards(){
         }
         currentCard++;
       }
-      $scope.$apply();
     }
 
     function loadMore(){
       pushData(newCardPerPage);
+      $scope.$apply();
     }
 
     function handleToggle(param){

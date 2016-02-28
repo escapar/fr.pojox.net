@@ -1,15 +1,15 @@
 angular.module('app.components')
-       .directive('card',card);
+       .directive('jcCard',jcCard);
 
-function card(){
+function jcCard(){
   var directive = {
     controller: cardCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card.tmpl.html',
     scope: {
-      content: '=',
-      dstShow: '@',
-      utcCn: '@'
+      content: '=jcContent',
+      dstShow: '@jcDstShow',
+      utcCn: '@jcUtcCn'
     },
     bindToController: true
   };

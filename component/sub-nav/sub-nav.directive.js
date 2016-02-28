@@ -1,15 +1,15 @@
 angular.module('app.components')
-       .directive('subNav',subNav);
+       .directive('jcSubNav',jcSubNav);
 
-function subNav(){
+function jcSubNav(){
   var directive = {
     controller: subNavCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/sub-nav/sub-nav.tmpl.html',
     scope: {
-      sections: '=',
-      active: '=',
-      settings: '='
+      sections: '=jcSections',
+      active: '=jcActive',
+      settings: '=jcSettings'
     },
     bindToController: true
   };

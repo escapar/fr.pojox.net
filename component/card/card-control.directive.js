@@ -1,12 +1,12 @@
 angular.module('app.components')
-       .directive('cardControl',cardControl);
+       .directive('jcCardControl',jcCardControl);
 
-function cardControl(){
+function jcCardControl(){
   var directive = {
     controller: cardControlCtrl,
     controllerAs: 'vm',
     templateUrl: 'component/card/card-control.tmpl.html',
-    require: '^^card',
+    require: '^^jcCard',
     scope: {},
     link: postLink,
     bindToController: true

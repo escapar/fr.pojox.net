@@ -1,0 +1,7 @@
+<div resize>
+  <div angular-grid="vm.displayedData" ag-id="cards" ag-infinite-scroll-distance="200" ag-infinite-scroll="vm.loadMore()" ag-performant-scroll="true">
+    <div class="dynamic-grid" ng-repeat="data in vm.displayedData track by data.time">
+      <jc-card jc-dst-show="true" jc-content="data" ng-if="data.time"></card>
+    </div>
+  </div>
+</div>

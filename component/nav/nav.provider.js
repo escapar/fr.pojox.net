@@ -1,7 +1,7 @@
 angular.module('app')
-       .provider('appNav',appNavProvider);
+       .provider('jcNav',jcNavProvider);
 
-function appNavProvider(){
+function jcNavProvider(){
   var navConfig = [];
   this.$get = function(){
     return {

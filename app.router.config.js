@@ -22,6 +22,12 @@ function routeProvider($stateProvider, $urlRouterProvider){
        templateUrl: 'app/about/about.view.html',
        controller: 'aboutCtrl',
        controllerAs: 'vm'
+     }).
+     state('analysis', {
+       url:'/analysis',
+       templateUrl: 'app/analysis/analysis.view.html',
+       controller: 'analysisCtrl',
+       controllerAs: 'vm'
      });
 
 }

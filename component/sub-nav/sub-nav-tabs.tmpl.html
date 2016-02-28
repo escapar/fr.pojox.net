@@ -1,6 +1,6 @@
 <div class="row" style="margin-bottom:0px;margin-right:10px">
-  <div class="col s10 l10 m10">
-    <ul class="tabs container" tabs>
+  <div class="col l11 m10 s10">
+    <ul class="tabs" tabs>
       <li class="tab" ng-repeat="tab in vm.tabs" ng-click="vm.displaySection(tab)">
         <a class="clickable {{vm.active.title === tab.title ? 'active' : ''}}">{{::tab.title}}</a>
       </li>
@@ -9,7 +9,7 @@
   <!--
     TODO MINOR : Reconsider how to order this element and its padding
   -->
-  <div class="col s2 l2 m2 right" style="padding-top:6px" ng-click="vm.displaySettings = ! vm.displaySettings">
-    <a class="btn-flat">SETTINGS</a>
-  </div>
+    <a class="col l1 m2 s2 waves-effect waves-teal btn-flat"
+       style="display:flex;padding-top: 6px;height:48px;padding-left: 1px;padding-right: 1px;width:68px"
+       ng-click="vm.displaySettings = !vm.displaySettings">SETTINGS</a>
 </div>

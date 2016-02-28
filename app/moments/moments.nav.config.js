@@ -1,11 +1,10 @@
 angular.module('app')
        .config(navConfig);
 
-function navConfig(appNavProvider){
-  var appNav = appNavProvider.$get();
-  appNav.addMenu(
+function navConfig(jcNavProvider){
+  jcNavProvider.$get().addMenu(
     [
-      {title : 'Moments', state : 'moments'}
+      {title : 'Moments', state : 'moments', order : 2}
     ]
   );
 }
