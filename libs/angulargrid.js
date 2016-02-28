@@ -112,8 +112,8 @@
 
 
             //get the user input options
-            var options;
-
+            var options = {};
+            options.init = true;
             //check deprecated options
             ['gridWidth', 'gutterSize', 'refreshOnImgLoad', 'direction', 'options', 'cssGrid', 'agId'].forEach(function(key) {
               var depKey = camelCaseToHyphenCase(key);
@@ -490,9 +490,13 @@
                     clones.remove();
 
                     //update the scroll container info
+
+                    if(options.init){
+                      scrollNs.scrollContInfo.scrollHeight = 0;
+                      options.init = false;
+                    }
                     if (options.performantScroll || scope.infiniteScroll) {
                       scrollNs.scrollContInfo = getScrollContainerInfo();
-                      scrollNs.scrollContInfo.scrollHeight = 0;
                     }
 
                     //if performantScroll is enabled calculate the page info, and reflect dom elements to reflect visible pages

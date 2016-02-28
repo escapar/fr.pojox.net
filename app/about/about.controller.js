@@ -23,10 +23,16 @@ function aboutCtrl () {
       featured: true
     },
     {
-      title: 'Recent Release v1.3 2016.02.25',
+      title: 'v1.4 RC1 (Nozomi) 2016.02.28',
+      time: 1456675603,
+      text: 'Nozomi is a Stable Version Milestone , from then I\'ll create a backend in express for it.\nOptimized Documentation.\nRenewed Card Style\nRefractor and Added Navbar Order\nRefresh Policy Change',
+      featured: true,
+    },
+    {
+      title: 'v1.3 2016.02.25',
       time: 1456420305,
       text: 'Heavy Refractor of Card/Cards View and Component\nUpdated angular-grid\nSolved various tiny bugs\n',
-      featured: true,
+      featured: false,
     },
     {
       title: 'v1.2 2016.02.24',

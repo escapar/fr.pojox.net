@@ -9,7 +9,7 @@ function jcCard(){
     scope: {
       content: '=jcContent',
       dstShow: '@jcDstShow',
-      utcCn: '@jcUtcCn'
+      utcCn: '@jcShowUtcCn'
     },
     bindToController: true
   };
