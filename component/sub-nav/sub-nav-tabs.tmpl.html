@@ -1,17 +1,21 @@
 <div class="row" style="margin-bottom:0px;margin-right:10px">
-  <div class="col l11 m10 s10">
     <ul class="tabs" tabs>
+      <li class="disabled" style="padding-top:6px">
+        <a class="waves-effect waves-teal btn-flat"
+           ng-click="vm.displaySettings = !vm.displaySettings">SETTINGS</a>
+      </li>
       <li class="tab" ng-repeat="tab in vm.tabs" ng-click="vm.displaySection(tab)">
         <a class="clickable {{vm.active.title === tab.title ? 'active' : ''}}">{{::tab.title}}</a>
       </li>
     </ul>
-  </div>
   <!--
     TODO MINOR : Reconsider how to order this element and its padding
   -->
-  <div style="padding-top:6px">
-    <a class="col l1 m2 s2 waves-effect waves-teal btn-flat"
+  <!--
+  <div style="padding-top:6px right">
+    <a class="col l2 m2 s3 waves-effect waves-teal btn-flat"
        style="display:flex;padding-top: 0px;padding-left: 1px;padding-right: 1px;width:68px"
        ng-click="vm.displaySettings = !vm.displaySettings">SETTINGS</a>
   </div>
+-->
 </div>
