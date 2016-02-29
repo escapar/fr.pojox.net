@@ -2,11 +2,11 @@
   TODO MINOR: Enhancement of Image displaying
 -->
 <div class="grid">
-  <div class="card-image" ng-repeat="url in vm.content.image track by $index">
+  <div class="card-image" ng-repeat="url in ::vm.content.image track by $index">
     <div class="progress">
       <div class="indeterminate"></div>
     </div>
-    <img materialboxed class="materialboxed" ng-src="{{url}}" class="grid-img"></img>
+    <img materialboxed class="materialboxed" ng-src="{{::url}}" class="grid-img"></img>
   </div>
 
 <!--
@@ -18,15 +18,15 @@
     </ul>
  </div>
  -->
-  <div ng-class="vm.content.featured? 'white-text' : 'white-text'" class="card-content">
+  <div ng-class="::vm.content.featured? 'white-text' : 'white-text'" class="card-content">
     <span ng-if="vm.content.title" class="card-title">
-      {{::vm.content.title}}
+      <span>{{::vm.content.title}}</span>
     </span>
     <div>
     <pre>{{::vm.content.text}}</pre>
   </div>
     <div class="left-align" ng-class="vm.content.featured? 'yellow-text' : 'white-text'">
-      {{::vm.timeMessage}}
+      <span>{{::vm.timeMessage}}</span>
     </div>
     <div class="yellow-text right-align" ng-if="vm.content.featured">
       ★Featured

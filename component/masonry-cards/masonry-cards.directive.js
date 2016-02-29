@@ -82,7 +82,7 @@ function jcMasonryCards(){
 
     function loadMore(){
       pushData(newCardPerPage);
-      $scope.$apply();
+      $scope.$digest();
     }
 
     function handleToggle(param){
@@ -104,6 +104,6 @@ function jcMasonryCards(){
     $scope.$watch('vm.data', function (value) {
         // Recerive new monthly Data
         init();
-    });
+    },true);
   }
 }

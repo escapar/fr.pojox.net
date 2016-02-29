@@ -15,7 +15,9 @@ function jcCard(){
   };
   return directive;
 
-  function cardCtrl() {
+  function cardCtrl(APP_CONST) {
     var vm = this;
+    vm.prod = APP_CONST.production;
+
   }
 }
