@@ -8,7 +8,7 @@ function jcCardContent(angularGridInstance){
     templateUrl: 'component/card/card-content.tmpl.html',
     scope: {},
     require: '^^jcCard',
-    compile: compileRefresh,
+    link: postLink,
     bindToController: true
   };
   return directive;
@@ -51,16 +51,4 @@ function jcCardContent(angularGridInstance){
       unset();
     }, true);
   }
-
-  function compileRefresh(element, attrs){
-    if(!angular.isUndefined(angularGridInstance) && !angular.isUndefined(angularGridInstance.cards)){
-      angularGridInstance.cards.refresh();
-    }
-    return {
-      post: postLink
-    }
-  }
-
-  ///////////////////////////
-
 }

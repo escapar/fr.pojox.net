@@ -69,8 +69,8 @@
     '.angular-grid > *{opacity : 0} ' +
     '.angular-grid > .angular-grid-item{opacity : 1}' + '</style>');
 
-  angular.module('angularGrid', []).directive('angularGrid', ['$timeout', '$window', '$q', 'angularGridInstance','$rootScope',
-      function($timeout, $window, $q, angularGridInstance,$rootScope) {
+  angular.module('angularGrid', []).directive('angularGrid', ['$timeout', '$window', '$q', 'angularGridInstance',
+      function($timeout, $window, $q, angularGridInstance) {
         return {
           restrict: 'A',
           scope: {
@@ -109,42 +109,7 @@
 
             element.addClass('angular-grid');
 
-            var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
-            $window = angular.element($window);
-            scrollDistance = 0;
-            if (attrs.infiniteScrollDistance != null) {
-              scope.$watch(attrs.infiniteScrollDistance, function(value) {
-                return scrollDistance = parseInt(value, 10);
-              });
-            }
-            scrollEnabled = true;
-            checkWhenEnabled = false;
-            if (attrs.infiniteScrollDisabled != null) {
-              scope.$watch(attrs.infiniteScrollDisabled, function(value) {
-                scrollEnabled = !value;
-                if (scrollEnabled && checkWhenEnabled) {
-                  checkWhenEnabled = false;
-                  return handler();
-                }
-              });
-            }
 
-            handler = function() {
-              var elementBottom, remaining, shouldScroll, windowBottom;
-              windowBottom = $window.height() + $window.scrollTop();
-              elementBottom = element.offset().top + element.height();
-              remaining = elementBottom - windowBottom;
-              shouldScroll = remaining <= $window.height() * scrollDistance;
-              if (shouldScroll && scrollEnabled) {
-                if ($rootScope.$$phase) {
-                  return scope.$eval(scope.infiniteScroll);
-                } else {
-                  return scope.$apply(scope.infiniteScroll);
-                }
-              } else if (shouldScroll) {
-                return checkWhenEnabled = true;
-              }
-            };
 
             //get the user input options
             var options = {};
@@ -336,7 +301,7 @@
 
             setTimeout(function() {
               scrollNs.scrollContInfo = getScrollContainerInfo();
-              win.on('scroll', handler);
+              win.on('scroll', scrollHandler);
             }, 0);
 
             //function to get column width and number of columns
@@ -695,18 +660,9 @@
               win.off('resize', windowResizeCallback);
               clearTimeout(scrollNs.infiniteScrollTimeout);
               if (scrollNs.scrollContInfo) {
-                scrollNs.scrollContInfo.$elm.off('scroll', handler);
+                scrollNs.scrollContInfo.$elm.off('scroll', scrollHandler);
               }
             });
-            return $timeout((function() {
-              if (attrs.infiniteScrollImmediateCheck) {
-                if (scope.$eval(attrs.infiniteScrollImmediateCheck)) {
-                  return handler();
-                }
-              } else {
-                return handler();
-              }
-            }), 0);
           }
         };
       }
