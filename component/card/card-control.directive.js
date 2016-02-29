@@ -18,9 +18,8 @@ function jcCardControl(){
     scope.vm.content = cardCtrl.content;
   }
 
-  function cardControlCtrl($scope,appEvent,APP_CONST) {
+  function cardControlCtrl($scope,appEvent) {
     var vm = this;
-    vm.prod = APP_CONST.production;
     vm.deleteData = deleteData;
     vm.outputData = outputData;
     vm.feature = feature;

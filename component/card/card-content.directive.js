@@ -8,7 +8,7 @@ function jcCardContent(angularGridInstance){
     templateUrl: 'component/card/card-content.tmpl.html',
     scope: {},
     require: '^^jcCard',
-    compile: compileRefresh,
+    link: postLink,
     bindToController: true
   };
   return directive;
@@ -25,10 +25,6 @@ function jcCardContent(angularGridInstance){
     vm.refreshInit = refreshInit;
     ///////////////////////////
 
-    function handleTime(timestamp){
-      vm.timeMessage = getTimeMessage(timestamp);
-      unset();
-    }
     function refreshInit(){
       if(!angular.isUndefined(angularGridInstance) && !angular.isUndefined(angularGridInstance.cards)){
         angularGridInstance.cards.refresh();
@@ -48,7 +44,7 @@ function jcCardContent(angularGridInstance){
     function checkAndOutputUTC(timestamp){
       //We've got summertime for French guys
       if(angular.isUndefined(timestamp)) return;
-      if(timestamp > 1427587200 && timestamp < 1445731200 || timestamp >1396137600 && timestamp < 1414281600){
+      if(timestamp > 1427587200 && timestamp < 1445731200 || timestamp > 1396137600 && timestamp < 1414281600){
         return '+0200';
       }else if(vm.utcCn){
         return '+0800';
@@ -62,13 +58,4 @@ function jcCardContent(angularGridInstance){
       unset();
     });
   }
-
-  function compileRefresh(element, attrs){
-    return {
-      post: postLink
-    }
-  }
-
-  ///////////////////////////
-
 }

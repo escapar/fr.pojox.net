@@ -74,7 +74,6 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
       if(vm.dataz[i].time === month){
         vm.selectedMonth = [];
         vm.selectedMonth = vm.dataz[i];
-
         vm.currentSelectedMonth = month;
         vm.currentSelectedTab = getTabByMonth(month);
         return;
