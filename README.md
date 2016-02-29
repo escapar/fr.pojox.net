@@ -1,16 +1,22 @@
-# angular-masonry-example
-  Built for a website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).
+# angular-masonry-example (Juicy)
+  Built for a website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).    
+  Planned to be developed as a Full JS-Stacked micro-blog posting system.
 
-# TODO
-Goal for V2 : Make this repo a more generic one to fit more cases of infinit cascading flow (whatever) display.    
-Goal for the future: Create a component-lib called Juicy (namespace: jc)    
+# Libs
+AngularJS 1.x    
+Modified Angular-materialize(including Materialize)    
+Modified Angular-grid by s-yadav (https://github.com/s-yadav/angulargrid)   
 
-App-wide[Major] : Build up a compiling workflow with Gulp + Browserify     
-jcNav [Major]: Order by priority    
-Card And Fonctionality [Moderate] : comment and tag function to add in further releases  
+# Road to V2
+The Codename Of this Library is now officially Juicy(namespace: jc)!    
+TODO: Create a backend based on Express.    
+TODO: Build up a compiling workflow with Gulp + Browserify      
+TODO: Comment and tag function to add in further releases      
+TODO: Compose and Analysis module to add in further releases(optional)'    
+
 
 # How to use
-Currently not available as a module.    
+Developed as a full-functional website , Currently not available as a module.    
 
 ###Datasource must be in this form:   
 
@@ -67,8 +73,8 @@ Currently not available as a module.
 
 # App-wide Service
 ### Event Service
-`appEvent.publish('toukoPRPR', param);`
-`appEvent.subscribe('toukoPRPR', callBack, $scope);  // $scope to prevent memory leak.`
+`appEvent.publish('toukoPRPR', param);`      
+`appEvent.subscribe('toukoPRPR', callBack, $scope);  // $scope to prevent memory leak.`      
 
 Well you could still use $rootScope.$broadcast if you want :)
 

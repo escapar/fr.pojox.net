@@ -100,6 +100,7 @@
             infiniteScrollDelay: '=agInfiniteScrollDelay'
           },
           link: function(scope, element, attrs) {
+            $timeout(function(){
             var domElm = element[0],
               win = $($window),
               agId = scope.agId || scope.dep_agId, // angularGridId is deprecated
@@ -112,8 +113,7 @@
 
 
             //get the user input options
-            var options = {};
-            options.init = true;
+            var options;
             //check deprecated options
             ['gridWidth', 'gutterSize', 'refreshOnImgLoad', 'direction', 'options', 'cssGrid', 'agId'].forEach(function(key) {
               var depKey = camelCaseToHyphenCase(key);
@@ -663,7 +663,7 @@
                 scrollNs.scrollContInfo.$elm.off('scroll', scrollHandler);
               }
             });
-          }
+          },0);}
         };
       }
     ])

@@ -7,26 +7,32 @@ function aboutCtrl () {
     {
       title: 'Libs',
       time: 1456420305,
-      text: 'AngularJS Modified Angular-materialize(including Materialize) \nModified Angular-materialize(including Materialize)  \nModified Angular-grid by s-yadav https://github.com/s-yadav/angulargrid',
-      featured: true,
+      text: 'AngularJS \nModified Angular-materialize(including Materialize)\nModified Angular-grid by s-yadav (https://github.com/s-yadav/angulargrid)',
+      featured: false,
     },
     {
       title: 'About Me',
       time: 1456420305,
       text: 'Author : POJOa\nSite : http://src.moe/',
+      featured: false
+    },
+    {
+      title: 'Road to V2',
+      time: 1456751208,
+      text: 'The Codename Of this Library is now officialy Juicy(namespace: jc)!\nTODO:Create a backend based on Express. \nTODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Compose and Analysis module to add in further releases(optional)',
       featured: true
     },
     {
-      title: 'TODO',
-      time: 1456420305,
-      text: 'Goal for V2 : Make this repo a more generic one to fit more cases of infinit cascading flow (whatever) display.\nGoal for the future: Create a component-lib called Juicy (namespace: jc)\nApp-wide[Major] : Build up a compiling workflow with Gulp + Browserify\njcNav [Major]: Order by priority\nCard And Fonctionality [Moderate] : comment and tag function to add in further releases',
-      featured: true
+      title: 'v1.4 RC2 (Nozomi) 2016.02.29',
+      time: 1456751208,
+      text: 'Optimized performance',
+      featured: true,
     },
     {
       title: 'v1.4 RC1 (Nozomi) 2016.02.28',
       time: 1456675603,
       text: 'Nozomi is a Stable Version Milestone , from then I\'ll create a backend in express for it.\nOptimized Documentation.\nRenewed Card Style\nRefractor and Added Navbar Order\nRefresh Policy Change',
-      featured: true,
+      featured: false,
     },
     {
       title: 'v1.3 2016.02.25',

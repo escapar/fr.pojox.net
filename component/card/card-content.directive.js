@@ -22,11 +22,17 @@ function jcCardContent(angularGridInstance){
   function cardContentCtrl($scope, $filter) {
     var vm = this;
     vm.timeMessage = '';
+    vm.refreshInit = refreshInit;
     ///////////////////////////
 
     function handleTime(timestamp){
       vm.timeMessage = getTimeMessage(timestamp);
       unset();
+    }
+    function refreshInit(){
+      if(!angular.isUndefined(angularGridInstance) && !angular.isUndefined(angularGridInstance.cards)){
+        angularGridInstance.cards.refresh();
+      }
     }
 
     function getTimeMessage(timestamp){
@@ -58,9 +64,6 @@ function jcCardContent(angularGridInstance){
   }
 
   function compileRefresh(element, attrs){
-    if(!angular.isUndefined(angularGridInstance) && !angular.isUndefined(angularGridInstance.cards)){
-      angularGridInstance.cards.refresh();
-    }
     return {
       post: postLink
     }

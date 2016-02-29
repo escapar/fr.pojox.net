@@ -33,10 +33,11 @@ function jcMasonryCards(){
     /////////////
 
     function init(){
+      var initPush = true;
       vm.displayedData = [];
       displayedDataMirror = [];
       currentCard = 0;
-      pushData(initialCardNum);
+      pushData(initialCardNum,initPush);
     }
 
     function deleteData(event,time){
@@ -64,11 +65,14 @@ function jcMasonryCards(){
       return showFeatured && showWeired;
     }
 
-    function pushData(number){
+    function pushData(number,initPush){
       for(var i = 0; i<number; i++){
         if(vm.data == null || vm.data[currentCard] == null)
           return;
         //Ensure correct number of cards displayed when $filter is off
+        if(initPush){
+          vm.data[currentCard].masonryInit = true;
+        }
         displayedDataMirror.push(vm.data[currentCard]);
         if(displayFilter(vm.data[currentCard])){
           vm.displayedData.push(vm.data[currentCard]);
