@@ -14,7 +14,8 @@ function jcNav($state){
     var vm = this;
     vm.appTitle = APP_CONST.title;
     vm.appVersion = APP_CONST.version;
-    vm.navs = $filter('orderBy')(jcNav.navConfig, jcNav.order, true);
+    console.log(jcNav);
+    vm.navs = $filter('orderBy')(jcNav.navConfig, 'order', true);
     vm.gotoState = gotoState;
 
     /////////////////////////
