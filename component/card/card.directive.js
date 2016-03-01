@@ -9,7 +9,8 @@ function jcCard(){
     scope: {
       content: '=jcContent',
       dstShow: '@jcDstShow',
-      utcCn: '@jcShowUtcCn'
+      utcCn: '@jcShowUtcCn',
+      hideProgress: '@jcHideProgress'
     },
     bindToController: true
   };

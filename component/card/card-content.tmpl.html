@@ -3,7 +3,7 @@
 -->
 <div class="grid">
   <div class="card-image" ng-repeat="url in ::vm.content.image track by $index" ng-init="$last && vm.content.masonryInit ? vm.refreshInit() : angular.noop()">
-    <div class="progress">
+    <div class="progress" ng-if="!vm.hideProgress">
       <div class="indeterminate"></div>
     </div>
     <img materialboxed class="materialboxed" ng-src="{{::url}}" class="grid-img"></img>

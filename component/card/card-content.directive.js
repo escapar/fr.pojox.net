@@ -17,6 +17,7 @@ function jcCardContent(angularGridInstance){
     scope.vm.content = cardCtrl.content;
     scope.vm.dstShow = cardCtrl.dstShow;
     scope.vm.utcCn = cardCtrl.utcCn;
+    scope.vm.hideProgress = cardCtrl.hideProgress;
   }
 
   function cardContentCtrl($scope, $filter) {
