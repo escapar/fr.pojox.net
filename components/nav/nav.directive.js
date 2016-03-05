@@ -1,11 +1,11 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('jcNav',jcNav);
 
 function jcNav($state){
   var directive = {
     controller: navCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/nav/nav.tmpl.html',
+    templateUrl: 'components/nav/nav.tmpl.html',
     bindToController: true
   };
   return directive;

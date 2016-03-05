@@ -1,11 +1,11 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('jcSubNavTabs',jcSubNavTabs);
 
 function jcSubNavTabs(){
   var directive = {
     controller: subNavTabsCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/sub-nav/sub-nav-tabs.tmpl.html',
+    templateUrl: 'components/sub-nav/sub-nav-tabs.tmpl.html',
     require:'^jcSubNav',
     link: postLink,
     bindToController: true

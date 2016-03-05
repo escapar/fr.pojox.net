@@ -1,11 +1,11 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('jcCard',jcCard);
 
 function jcCard(){
   var directive = {
     controller: cardCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/card/card.tmpl.html',
+    templateUrl: 'components/card/card.tmpl.html',
     scope: {
       content: '=jcContent',
       showDst: '@jcShowDst',

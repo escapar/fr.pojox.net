@@ -1,11 +1,11 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('jcCardControl',jcCardControl);
 
 function jcCardControl(){
   var directive = {
     controller: cardControlCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/card/card-control.tmpl.html',
+    templateUrl: 'components/card/card-control.tmpl.html',
     require: '^^jcCard',
     scope: {},
     link: postLink,

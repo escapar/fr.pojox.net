@@ -43,7 +43,7 @@ function aboutCtrl () {
     {
       title: 'v1.3 2016.02.25',
       time: 1456420305,
-      text: 'Heavy Refractor of Card/Cards View and Component\nUpdated angular-grid\nSolved various tiny bugs\n',
+      text: 'Heavy Refractor of Card/Cards View and components\nUpdated angular-grid\nSolved various tiny bugs\n',
       featured: false,
     },
     {

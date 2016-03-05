@@ -1,4 +1,4 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('jcSubNavSettings',jcSubNavSettings);
 
 function jcSubNavSettings(){
@@ -7,7 +7,7 @@ function jcSubNavSettings(){
     controllerAs: 'vm',
     require:'^jcSubNav',
     link: postLink,
-    templateUrl: 'component/sub-nav/sub-nav-settings.tmpl.html',
+    templateUrl: 'components/sub-nav/sub-nav-settings.tmpl.html',
     bindToController: true
   };
   return directive;

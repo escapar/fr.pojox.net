@@ -1,11 +1,11 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('jcCardContent',jcCardContent);
 
 function jcCardContent(angularGridInstance){
   var directive = {
     controller: cardContentCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/card/card-content.tmpl.html',
+    templateUrl: 'components/card/card-content.tmpl.html',
     scope: {},
     require: '^^jcCard',
     link: postLink,

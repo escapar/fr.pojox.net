@@ -1,4 +1,4 @@
-angular.module('app.components')
+angular.module('app.componentss')
        .directive('resize', resize)
 
 // Copied From StackOverflow

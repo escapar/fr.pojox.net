@@ -5,7 +5,7 @@ function jcMasonryCards(){
   var directive = {
     controller: masonryCardsCtrl,
     controllerAs: 'vm',
-    templateUrl: 'component/masonry-cards/masonry-cards.view.html',
+    templateUrl: 'components/masonry-cards/masonry-cards.view.html',
     scope: {
       data: '=jcData',
       initialCardNum: '@jcInitNum',
