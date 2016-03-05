@@ -1,6 +1,7 @@
 # angular-masonry-example (Juicy)
   Built for a website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).    
   Planned to be developed as a Full JS-Stacked micro-blog posting system.
+  BTW : Beat is an alias of Post(Tweet) in this app.
 
 # Libs
 AngularJS 1.x    
@@ -12,13 +13,13 @@ The Codename Of this Library is now officially Juicy(namespace: jc)!
 TODO: Create a backend based on Express.    
 TODO: Build up a compiling workflow with Gulp + Browserify      
 TODO: Comment and tag function to add in further releases      
-TODO: Compose and Analysis module to add in further releases(optional)'    
+TODO: Compose and Analysis module to add in further releases(optional)
 
 
 # How to use
 Developed as a full-functional website , Currently not available as a module.    
 
-###Datasource must be in this form:   
+###Data Source must be in this form:   
 
     [{
       title: 'Libs',
@@ -34,7 +35,7 @@ Developed as a full-functional website , Currently not available as a module.
 
 ###Directives:
    Full-screen Masonry Cards:      
-   `<jc-masonry-cards jc-init-num="10" jc-refresh-num="6" jc-data="vm.selectedMonth.moments"></jc-masonry-cards>`   
+   `<jc-masonry-cards jc-init-num="10" jc-refresh-num="6" jc-data="vm.selectedMonth.beats"></jc-masonry-cards>`   
 
    A Single Card:   
    `<jc-card jc-content="about" jc-show-utc-cn="true"></jc-card>`    
@@ -48,7 +49,7 @@ Developed as a full-functional website , Currently not available as a module.
 
       [{
         title: getNavDateLabel(yearAndMonth) ,
-        state: 'moments.specified',
+        state: 'beats.specified',
         stateParam : { month: yearAndMonth }
       },{
         title: 'ToukoPRPR' ,

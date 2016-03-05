@@ -4,7 +4,8 @@ angular.module('app')
 function navConfig(jcNavProvider){
   jcNavProvider.$get().addMenu(
     [
-      {title : 'Moments', state : 'moments', order : 2}
+      {title : 'Compose', state : 'compose', order : 1}
     ]
   );
+
 }

@@ -1,10 +1,10 @@
 angular.module('app.modules')
-       .controller('momentsCtrl',momentsCtrl);
+       .controller('beatsCtrl',beatsCtrl);
 
-function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance) {
+function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance) {
   var vm = this;
-  //Temporarily treat vm.dataz as a local datasource
-  vm.dataz = [];
+  //Temporarily treat vm.dataSource as a local datasource
+  vm.dataSource = [];
   vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
   vm.tabs = [];
   vm.currentSelectedTab = {};
@@ -37,8 +37,8 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
 
   function outputData(){
     var output = [];
-    output.moments=[];
-    vm.dataz.forEach(function(data){
+    output.beats=[];
+    vm.dataSource.forEach(function(data){
       if(checkMonth(data.time)){
         output.push(data);
       };
@@ -57,11 +57,11 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
 
   function deleteData(event,time){
     var output = [];
-    vm.dataz.forEach(function(data){
+    vm.dataSource.forEach(function(data){
         if(data.time === vm.currentSelectedMonth){
-        for(var i = 0 ; i< data.moments.length; i++){
-          if(data.moments[i].time === time){
-            data.moments.splice(i,1);
+        for(var i = 0 ; i< data.beats.length; i++){
+          if(data.beats[i].time === time){
+            data.beats.splice(i,1);
             return;
           }
         }
@@ -70,10 +70,10 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
   }
 
   function displayMonth(month){
-    for(var i = 0; i < vm.dataz.length; i++){
-      if(vm.dataz[i].time === month){
+    for(var i = 0; i < vm.dataSource.length; i++){
+      if(vm.dataSource[i].time === month){
         vm.selectedMonth = [];
-        vm.selectedMonth = vm.dataz[i];
+        vm.selectedMonth = vm.dataSource[i];
         vm.currentSelectedMonth = month;
         vm.currentSelectedTab = getTabByMonth(month);
         return;
@@ -83,7 +83,7 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
     function getTabByMonth(yearAndMonth){
       return {
         title: getNavDateLabel(yearAndMonth),
-        state: 'moments.specified',
+        state: 'beats.specified',
         stateParam : { month: yearAndMonth }
       }
     }
@@ -99,7 +99,7 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
         tabs.push(
           {
             title: getNavDateLabel(yearAndMonth) ,
-            state: 'moments.specified',
+            state: 'beats.specified',
             stateParam : { month: yearAndMonth }
           }
         );
@@ -109,7 +109,7 @@ function momentsCtrl ($scope, $http, $state, $document, appEvent, angularGridIns
   }
 
   function getDataSuccess(data){
-    vm.dataz = data;
+    vm.dataSource = data;
     timeInUrl = vm.monthNeeded[0];
 
     if($state.params.month != null){

@@ -2,25 +2,31 @@ angular.module('app')
        .config(routeProvider);
 function routeProvider($stateProvider, $urlRouterProvider){
 
-  $urlRouterProvider.otherwise("moments");
+  $urlRouterProvider.otherwise("beats");
 
   $stateProvider.
-     state('moments', {
-       url:'/moments',
-       templateUrl: 'app/moments/moments.view.html',
-       controller: 'momentsCtrl',
+     state('beats', {
+       url:'/beats',
+       templateUrl: 'app/beats/beats.view.html',
+       controller: 'beatsCtrl',
        controllerAs: 'vm'
      }).
-     state('moments.specified', {
+     state('beats.specified', {
        url:'/month/:month',
-       templateUrl: 'app/moments/moments.view.html',
-       controller: 'momentsCtrl',
+       templateUrl: 'app/beats/beats.view.html',
+       controller: 'beatsCtrl',
        controllerAs: 'vm'
      }).
      state('about', {
        url:'/about',
        templateUrl: 'app/about/about.view.html',
        controller: 'aboutCtrl',
+       controllerAs: 'vm'
+     }).
+     state('compose', {
+       url:'/compose',
+       templateUrl: 'app/compose/compose.view.html',
+       controller: 'composeCtrl',
        controllerAs: 'vm'
      }).
      state('analysis', {

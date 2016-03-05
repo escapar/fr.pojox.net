@@ -1,6 +1,6 @@
 angular.module('app')
        .constant('APP_CONST',{
-         title : 'Presqu\'île',
-         version : 'v1.4 RC2',
+         title : 'JuicyBeats',
+         version : 'v1.4.1',
          production : true
        });

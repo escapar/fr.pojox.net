@@ -1,7 +1,7 @@
 {
   "name": "presquile",
   "version": "1.0.0",
-  "description": "A website to display exported wechat moments of Mr.POJOa",
+  "description": "A website to display exported wechat beats of Mr.POJOa",
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/http-server -a localhost -p 8000 -c-1"

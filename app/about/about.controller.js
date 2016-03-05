@@ -11,7 +11,13 @@ function aboutCtrl () {
       featured: true
     },
     {
-      title: 'Recent Release v1.4 RC2 (Nozomi)',
+      title: 'Beta Release v1.4.1',
+      time: 1457162347,
+      text: 'Initialization of Compose Module',
+      featured: true,
+    },
+    {
+      title: 'Stable Release v1.4 (Nozomi)',
       time: 1456751208,
       text: 'Optimized performance',
       featured: true,

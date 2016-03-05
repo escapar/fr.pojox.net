@@ -50,18 +50,18 @@ function jcMasonryCards(){
       }
     }
 
-    function displayFilter(moment) {
-      if(moment.featured == null){
-        moment.featured = false;
+    function displayFilter(beat) {
+      if(beat.featured == null){
+        beat.featured = false;
       }
-      if(moment.safe == null){
-        moment.safe = true;
+      if(beat.safe == null){
+        beat.safe = true;
       }
 
       //Check if we could pass the feature toggle restrict
-      var showFeatured = (!vm.featuredOnly) || (vm.featuredOnly && moment.featured);
+      var showFeatured = (!vm.featuredOnly) || (vm.featuredOnly && beat.featured);
       //Check if we could pass the mentle safe(lol) toggle restrict
-      var showWeired = (!vm.safeOnly) || (vm.safeOnly && moment.safe);
+      var showWeired = (!vm.safeOnly) || (vm.safeOnly && beat.safe);
       return showFeatured && showWeired;
     }
 
