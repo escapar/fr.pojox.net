@@ -174,7 +174,7 @@
 
               return {
                 height: contElm.offsetHeight,
-                scrollHeight: element.prop('offsetHeight'),
+                  scrollHeight: element.prop('offsetHeight'),
                 startFrom: findPos(domElm, contElm).top,
                 $elm: options.scrollContainer == 'body' ? win : container
               };
@@ -286,7 +286,7 @@
                 contHeight = scrollNs.scrollContInfo.height;
               if (scrollTop >= (scrollHeight - contHeight * (1 + options.infiniteScrollDistance / 100))) {
                 scrollNs.isLoading = true;
-                scope.infiniteScroll();
+                scope.$apply(scope.infiniteScroll());
                 scrollNs.infiniteScrollTimeout = setTimeout(reEnableInfiniteScroll, options.infiniteScrollDelay);
               }
             }

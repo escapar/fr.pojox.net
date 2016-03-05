@@ -8,7 +8,7 @@ function jcCard(){
     templateUrl: 'component/card/card.tmpl.html',
     scope: {
       content: '=jcContent',
-      dstShow: '@jcDstShow',
+      showDst: '@jcShowDst',
       utcCn: '@jcShowUtcCn',
       hideProgress: '@jcHideProgress'
     },

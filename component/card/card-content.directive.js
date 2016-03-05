@@ -15,7 +15,7 @@ function jcCardContent(angularGridInstance){
 
   function postLink(scope, element, attrs, cardCtrl){
     scope.vm.content = cardCtrl.content;
-    scope.vm.dstShow = cardCtrl.dstShow;
+    scope.vm.showDst = cardCtrl.showDst;
     scope.vm.utcCn = cardCtrl.utcCn;
     scope.vm.hideProgress = cardCtrl.hideProgress;
   }
@@ -34,7 +34,7 @@ function jcCardContent(angularGridInstance){
 
     function getTimeMessage(timestamp){
       var timeMessage = $filter('date')(timestamp*1000, 'dd/MM/yy HH:mm', checkAndOutputUTC(timestamp));
-      if(vm.dstShow){
+      if(vm.showDst){
         timeMessage += checkAndOutputUTC(timestamp) === '+0100' ? ' Winter Time' : ' Summer Time';;
       } else if(vm.utcCn){
         timeMessage += ' CST';

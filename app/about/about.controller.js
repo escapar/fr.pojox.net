@@ -5,9 +5,21 @@ function aboutCtrl () {
   var vm = this;
   vm.aboutData = [
     {
-      title: 'Libs',
+      title: 'Road to V2',
+      time: 1456751208,
+      text: 'The Codename Of this Library is now officialy Juicy(namespace: jc)!\nTODO:Create a backend based on Express. \nTODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Compose and Analysis module to add in further releases(optional)',
+      featured: true
+    },
+    {
+      title: 'Recent Release v1.4 RC2 (Nozomi)',
+      time: 1456751208,
+      text: 'Optimized performance',
+      featured: true,
+    },
+    {
+      title: 'AngularJS Libs',
       time: 1456420305,
-      text: 'AngularJS \nModified Angular-materialize(including Materialize)\nModified Angular-grid by s-yadav (https://github.com/s-yadav/angulargrid)',
+      text: 'Modified Angular-materialize(including Materialize)\nModified Angular-grid by s-yadav (https://github.com/s-yadav/angulargrid)',
       featured: false,
     },
     {
@@ -15,18 +27,6 @@ function aboutCtrl () {
       time: 1456420305,
       text: 'Author : POJOa\nSite : http://src.moe/',
       featured: false
-    },
-    {
-      title: 'Road to V2',
-      time: 1456751208,
-      text: 'The Codename Of this Library is now officialy Juicy(namespace: jc)!\nTODO:Create a backend based on Express. \nTODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Compose and Analysis module to add in further releases(optional)',
-      featured: true
-    },
-    {
-      title: 'v1.4 RC2 (Nozomi) 2016.02.29',
-      time: 1456751208,
-      text: 'Optimized performance',
-      featured: true,
     },
     {
       title: 'v1.4 RC1 (Nozomi) 2016.02.28',

@@ -86,7 +86,6 @@ function jcMasonryCards(){
 
     function loadMore(){
       pushData(newCardPerPage);
-      $scope.$digest();
     }
 
     function handleToggle(param){
