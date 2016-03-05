@@ -174,7 +174,7 @@
 
               return {
                 height: contElm.offsetHeight,
-                scrollHeight: contElm.scrollHeight,
+                scrollHeight: element.prop('offsetHeight'),
                 startFrom: findPos(domElm, contElm).top,
                 $elm: options.scrollContainer == 'body' ? win : container
               };
