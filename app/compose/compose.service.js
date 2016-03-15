@@ -8,6 +8,6 @@ function composeService ($http, $state, $document, APP_CONST) {
   return service;
 
   function postBeat(beat){
-    return $http.post(APP_CONST.api + 'beats',beat);
+    return $http.post(APP_CONST.api + 'v1/beats',beat);
   }
 }

@@ -32,20 +32,21 @@ function jcCardContent(angularGridInstance){
       }
     }
 
-    function getTimeMessage(timestamp){
-      var timeMessage = $filter('date')(timestamp*1000, 'dd/MM/yy HH:mm', checkAndOutputUTC(timestamp));
+    function getTimeMessage(date){
+      var timeMessage = $filter('date')(new Date(date), 'dd/MM/yy HH:mm', checkAndOutputUTC(date));
       if(vm.showDst){
-        timeMessage += checkAndOutputUTC(timestamp) === '+0100' ? ' Winter Time' : ' Summer Time';;
+        timeMessage += checkAndOutputUTC(date) === '+0100' ? ' Winter Time' : ' Summer Time';;
       } else if(vm.utcCn){
         timeMessage += ' CST';
       }
       return timeMessage;
     }
 
-    function checkAndOutputUTC(timestamp){
+    function checkAndOutputUTC(date){
       //We've got summertime for French guys
-      if(angular.isUndefined(timestamp)) return;
-      if(timestamp > 1427587200 && timestamp < 1445731200 || timestamp > 1396137600 && timestamp < 1414281600){
+      if(angular.isUndefined(date)) return;
+      date = new Date(date);
+      if(date > new Date(1427587200000) && date < new Date(1445731200000) || date > new Date(1396137600000) && date < new Date(1414281600000)){
         return '+0200';
       }else if(vm.utcCn){
         return '+0800';

@@ -1,7 +1,12 @@
-# angular-masonry-example (Juicy)
-  Built for a website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).    
-  Planned to be developed as a Full JS-Stacked micro-blog posting system.
+# JuicyBeats Frontend
+  #In the branch "Master"
+  To be developed as a MEAN Stacked micro-blog posting system.
+  Must be used with jc-beats-backend.
+
   BTW : Beat is an alias of Post(Tweet) in this app.
+
+  #In the branch "Static"
+  A Website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).    
 
 # Libs
 AngularJS 1.x    
@@ -14,10 +19,10 @@ TODO: Create a backend based on Express.
 TODO: Build up a compiling workflow with Gulp + Browserify      
 TODO: Comment and tag function to add in further releases      
 TODO: Compose and Analysis module to add in further releases(optional)
-
+TODO: Optimize the efficiency of desktop masonry view.
+TODO: Unit Tests
 
 # How to use
-Developed as a full-functional website , Currently not available as a module.    
 
 ###Data Source must be in this form:   
 
@@ -89,5 +94,3 @@ Well you could still use $rootScope.$broadcast if you want :)
 
 # License
   I SET UP NO RESTRICTIONS BUT USE AT YOUR OWN RISK
-
-# If you love it please buy Touko some orange juice.

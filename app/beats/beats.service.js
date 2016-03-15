@@ -3,17 +3,17 @@ angular.module('app.modules')
 
 function beatsService ($http, $state, $document, APP_CONST) {
   var service = {
-    fetchBeats: fetchBeats,
-    fetchBeatsByMonth: fetchBeatsByMonth
+    fetchAll: fetchAll,
+    fetchByMonth: fetchByMonth
   }
   return service;
 
-  function fetchBeats(){
+  function fetchAll(){
     return $http.get(APP_CONST.api + 'v1/beats');
   }
 
-  function fetchBeatsByMonth(yymm, duration){
-    return $http.get(APP_CONST.api + 'yymm/' + yymm + '/duration/' + duration);
+  function fetchByMonth(yymm, duration){
+    return $http.get(APP_CONST.api + 'beats/yymm/' + yymm + '/duration/' + duration);
   }
 
 }

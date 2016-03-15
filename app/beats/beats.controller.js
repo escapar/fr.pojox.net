@@ -1,7 +1,7 @@
 angular.module('app.modules')
        .controller('beatsCtrl',beatsCtrl);
 
-function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance) {
+function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance, beatsService, composeService) {
   var vm = this;
   //Temporarily treat vm.dataSource as a local datasource
   vm.dataSource = [];
@@ -25,7 +25,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   ];
 
   // TODO MODERATE: comment and tag function to add in further releases
-  vm.displayMonth = displayMonth;
+  vm.getBeatOfMonth = getBeatOfMonth;
   vm.scrollTop = scrollTop;
   activate();
   ////////////////////////////////
@@ -33,7 +33,6 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   function scrollTop(){
     $document.scrollTop(0, 2000);
   }
-
 
   function outputData(){
     var output = [];
@@ -69,29 +68,26 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
     });
   }
 
-  function displayMonth(month){
-    for(var i = 0; i < vm.dataSource.length; i++){
-      if(vm.dataSource[i].time === month){
-        vm.selectedMonth = [];
-        vm.selectedMonth = vm.dataSource[i];
-        vm.currentSelectedMonth = month;
-        vm.currentSelectedTab = getTabByMonth(month);
-        return;
-      }
-    }
+  function getBeatOfMonth(month){
+    vm.currentSelectedMonth = month;
+    vm.currentSelectedTab = getTabByMonth(month);
+    return beatsService.fetchByMonth(month,1).success(function(res){
+      vm.selectedBeats = res;
+    });
+  }
 
-    function getTabByMonth(yearAndMonth){
-      return {
-        title: getNavDateLabel(yearAndMonth),
-        state: 'beats.specified',
-        stateParam : { month: yearAndMonth }
-      }
+  function getTabByMonth(yearAndMonth){
+    return {
+      title: getNavDateLabel(yearAndMonth),
+      state: 'beats.specified',
+      stateParam : { month: yearAndMonth }
     }
   }
 
   function activate(){
     vm.tabs = generatejcSubNavTabs();
-    return $http.get('data/data.json').success(getDataSuccess);
+    getBeat();
+  //  return $http.get('data/data.json').success(getDataSuccess);
 
     function generatejcSubNavTabs(){
       var tabs=[];
@@ -108,18 +104,16 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
     }
   }
 
-  function getDataSuccess(data){
-    vm.dataSource = data;
+  function getBeat(){
     timeInUrl = vm.monthNeeded[0];
-
     if($state.params.month != null){
       timeInUrl = $state.params.month;
     }
-    displayMonth(timeInUrl);
+    getBeatOfMonth(timeInUrl);
   }
 
   function switchMonth(event,tab){
-    displayMonth(tab.stateParam.month);
+    getBeatOfMonth(tab.stateParam.month);
   }
 
   function getNavDateLabel(yearAndMonth){
@@ -128,9 +122,25 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
     return month+'/'+year;
   }
 
+
+  /*function insertIntoDB(){
+    $http.get('data/data.json').then(function(data){
+        var dd = data.data;
+        angular.forEach(dd,function(d){
+            var beats = d.beats;
+            angular.forEach(beats,function(b){
+            b.time = new Date(b.time*1000);
+            composeService.postBeat(b);
+            });
+        });
+    })
+  }*/
+
   ///////////////////
   appEvent.subscribe('jcSubNavSectionSwitched', switchMonth, $scope);
   appEvent.subscribe('outputData', outputData, $scope);
   appEvent.subscribe('deleteData', deleteData, $scope);
+
+
 
 }
