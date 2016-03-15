@@ -1,12 +1,12 @@
 # JuicyBeats Frontend
-  #In the branch "Master"
-  To be developed as a MEAN Stacked micro-blog posting system.
-  Must be used with jc-beats-backend.
+##In the branch "Master"    
+To be developed as a MEAN Stacked micro-blog posting system.    
+Must be used with jc-beats-backend.    
 
-  BTW : Beat is an alias of Post(Tweet) in this app.
+BTW : Beat is an alias of Post(Tweet) in this app.    
 
-  #In the branch "Static"
-  A Website to display exported wechat moments , link http://fr.pojox.net/ (in mostly Chinese).    
+##In the branch "Static"    
+A Website to display exported wechat moments , preview link http://fr.pojox.net/ (in mostly Chinese).        
 
 # Libs
 AngularJS 1.x    
