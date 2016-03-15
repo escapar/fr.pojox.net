@@ -3,10 +3,13 @@ angular.module('app.modules')
 
 function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance, beatsService, composeService) {
   var vm = this;
+  var beatsPerPage = 6;
   //Temporarily treat vm.dataSource as a local datasource
+  vm.customRefreshEnabled = false;
   vm.dataSource = [];
-  vm.monthNeeded = ['1409','1410','1411','1412','1501','1502','1503','1504','1505','1506'];
+  vm.monthNeeded = [];
   vm.tabs = [];
+  vm.selectedBeats = [];
   vm.currentSelectedTab = {};
   vm.jcSubNavSettings = [
     {
@@ -27,8 +30,23 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   // TODO MODERATE: comment and tag function to add in further releases
   vm.getBeatOfMonth = getBeatOfMonth;
   vm.scrollTop = scrollTop;
+  vm.pushBeatsPaginated = pushBeatsPaginated;
+  vm.pageForCustomRefresh = 0;
   activate();
   ////////////////////////////////
+
+  function pushBeatsPaginated(){
+    var skipCount = beatsPerPage*vm.pageForCustomRefresh;
+    if(!vm.selectedBeats.beats){
+      vm.selectedBeats.beats = [];
+    }
+    beatsService.fetchBySkipAndLimit(skipCount , beatsPerPage).success(function(res){
+      angular.forEach(res,function(r){
+        vm.selectedBeats.beats.push(r);
+      });
+      vm.pageForCustomRefresh ++;
+    });
+  }
 
   function scrollTop(){
     $document.scrollTop(0, 2000);
@@ -85,35 +103,45 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   }
 
   function activate(){
-    vm.tabs = generatejcSubNavTabs();
-    getBeat();
-  //  return $http.get('data/data.json').success(getDataSuccess);
+    generatejcSubNavTabs().then(function(tabs){
+      vm.tabs = tabs;
+      if($state.params.month != null){
+        vm.customRefreshEnabled = false;
+        getBeatOfMonth($state.params.month);
+      }else{
+        vm.customRefreshEnabled = true;
+        pushBeatsPaginated();
+      }
+    });
+  }
 
-    function generatejcSubNavTabs(){
-      var tabs=[];
-      vm.monthNeeded.forEach(function(yearAndMonth){
-        tabs.push(
-          {
-            title: getNavDateLabel(yearAndMonth) ,
-            state: 'beats.specified',
-            stateParam : { month: yearAndMonth }
-          }
-        );
+  function generatejcSubNavTabs(){
+    var tabs=[{
+      title: 'Recent' ,
+      state: 'beats'
+    }];
+    return beatsService.fetchAvailableMonths().then(function(res){
+      angular.forEach(res.data , function(yymm){
+        tabs.push({
+          title: getNavDateLabel(yymm) ,
+          state: 'beats.specified',
+          stateParam : { month: yymm }
+        });
       });
       return tabs;
-    }
+    });
   }
 
-  function getBeat(){
-    timeInUrl = vm.monthNeeded[0];
-    if($state.params.month != null){
-      timeInUrl = $state.params.month;
+  function switchTab(event,tab){
+    if(tab.stateParam && tab.stateParam.month){
+      getBeatOfMonth(tab.stateParam.month);
+      vm.customRefreshEnabled = false;
+    }else{
+      vm.selectedBeats = [];
+      vm.pageForCustomRefresh = 0;
+      vm.customRefreshEnabled = true;
+      pushBeatsPaginated();
     }
-    getBeatOfMonth(timeInUrl);
-  }
-
-  function switchMonth(event,tab){
-    getBeatOfMonth(tab.stateParam.month);
   }
 
   function getNavDateLabel(yearAndMonth){
@@ -137,7 +165,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   }*/
 
   ///////////////////
-  appEvent.subscribe('jcSubNavSectionSwitched', switchMonth, $scope);
+  appEvent.subscribe('jcSubNavSectionSwitched', switchTab, $scope);
   appEvent.subscribe('outputData', outputData, $scope);
   appEvent.subscribe('deleteData', deleteData, $scope);
 

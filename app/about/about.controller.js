@@ -13,7 +13,7 @@ function aboutCtrl () {
     {
       title: 'Recent Release v1.4.2',
       time: 1458012771000,
-      text: 'Ready For Express Backend',
+      text: 'Ready For Express Backend\nAdded Recent Column\nThe Filter In Recent Column Currently Won\'t Work',
       featured: true,
     },
     {

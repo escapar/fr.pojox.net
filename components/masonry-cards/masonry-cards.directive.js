@@ -1,7 +1,7 @@
 angular.module('app.modules')
        .directive('jcMasonryCards',jcMasonryCards);
 
-function jcMasonryCards(){
+function jcMasonryCards($q){
   var directive = {
     controller: masonryCardsCtrl,
     controllerAs: 'vm',
@@ -9,7 +9,9 @@ function jcMasonryCards(){
     scope: {
       data: '=jcData',
       initialCardNum: '@jcInitNum',
-      newCardPerPage: '@jcRefreshNum'
+      newCardPerPage: '@jcRefreshNum',
+      customRefresh: '=jcCustomRefresh',
+      customRefreshEnabled: '=jcCustomRefreshEnabled'
     },
     bindToController: true
   };
@@ -17,7 +19,6 @@ function jcMasonryCards(){
 
   function masonryCardsCtrl($scope,$filter,angularGridInstance,appEvent) {
     var vm = this;
-
     // Defaults
     var initialCardNum = vm.initialCard  ? parseInt(vm.initialCardNum, 10) : 15;
     var newCardPerPage = vm.newCardPerPage ? parseInt(vm.newCardPerPage, 10) : 6;
@@ -29,8 +30,16 @@ function jcMasonryCards(){
     vm.featuredOnly = false;
     vm.safeOnly = true;
 
-    init();
     /////////////
+
+    function handleChange(){
+      if(vm.customRefreshEnabled){
+        vm.displayedDataMirror = vm.data;
+        vm.displayedData = $filter('filter')(vm.displayedDataMirror,displayFilter);
+      }else{
+        init();
+      }
+    }
 
     function init(){
       var initPush = true;
@@ -67,8 +76,9 @@ function jcMasonryCards(){
 
     function pushData(number,initPush){
       for(var i = 0; i<number; i++){
-        if(vm.data == null || vm.data[currentCard] == null)
+        if(vm.data == null || vm.data[currentCard] == null){
           return;
+        }
         //Ensure correct number of cards displayed when $filter is off
         if(initPush){
           vm.data[currentCard].masonryInit = true;
@@ -82,10 +92,16 @@ function jcMasonryCards(){
         }
         currentCard++;
       }
+
+
     }
 
     function loadMore(){
-      pushData(newCardPerPage);
+      if(vm.customRefreshEnabled){
+        $scope.$apply(vm.customRefresh());
+      }else{
+        pushData(newCardPerPage);
+      }
     }
 
     function handleToggle(param){
@@ -104,9 +120,11 @@ function jcMasonryCards(){
     appEvent.subscribe('toggleWeired', handleToggle('safeOnly'), $scope);
     appEvent.subscribe('deleteData', deleteData, $scope);
 
-    $scope.$watch('vm.data', function (value) {
+    $scope.$watchCollection('vm.data', function (value) {
         // Recerive new monthly Data
-        init();
+        if(value){
+          handleChange();
+        }
     },true);
   }
 }
