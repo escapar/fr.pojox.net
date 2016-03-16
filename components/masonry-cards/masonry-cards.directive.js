@@ -35,13 +35,13 @@ function jcMasonryCards($q){
     function handleChange(){
       if(vm.customRefreshEnabled){
         vm.displayedDataMirror = vm.data;
-        vm.displayedData = $filter('filter')(vm.displayedDataMirror,displayFilter);
+        vm.displayedData = $filter('filter')(vm.displayedDataMirror, displayFilter);
       }else{
-        init();
+        handleRefreshDisabled();
       }
     }
 
-    function init(){
+    function handleRefreshDisabled(){
       var initPush = true;
       vm.displayedData = [];
       displayedDataMirror = [];
@@ -93,7 +93,6 @@ function jcMasonryCards($q){
         currentCard++;
       }
 
-
     }
 
     function loadMore(){
@@ -120,9 +119,9 @@ function jcMasonryCards($q){
     appEvent.subscribe('toggleWeired', handleToggle('safeOnly'), $scope);
     appEvent.subscribe('deleteData', deleteData, $scope);
 
-    $scope.$watchCollection('vm.data', function (value) {
+    $scope.$watchCollection('vm.data', function () {
         // Recerive new monthly Data
-        if(value){
+        if(vm.data && vm.data.length){
           handleChange();
         }
     },true);

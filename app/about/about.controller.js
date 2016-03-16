@@ -7,13 +7,13 @@ function aboutCtrl () {
     {
       title: 'Road to V2',
       time: 1456751208000,
-      text: 'The Codename Of this Library is now officialy Juicy(namespace: jc)!\nTODO:Create a backend based on Express. \nTODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Compose and Analysis module to add in further releases(optional)',
+      text: 'To be developed as a MEAN Stacked micro-blog posting system.\nTODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Compose and Analysis module to add in further releases(optional)\n TODO: Optimize the efficiency of desktop masonry view. \nTODO: Unit Tests',
       featured: true
     },
     {
-      title: 'Recent Release v1.4.2',
-      time: 1458012771000,
-      text: 'Ready For Express Backend\nAdded Recent Column\nThe Filter In Recent Column Currently Won\'t Work',
+      title: 'Recent Release v1.5',
+      time: 1458114983000,
+      text: 'Multiple Bug Fixes For Recent Tab',
       featured: true,
     },
     {
@@ -27,6 +27,12 @@ function aboutCtrl () {
       time: 1456420305000,
       text: 'Author : POJOa\nSite : http://src.moe/',
       featured: false
+    },
+    {
+      title: 'v1.4.2',
+      time: 1458012771000,
+      text: 'Ready For Express Backend\nAdded Recent Column\nThe Filter In Recent Column Currently Won\'t Work',
+      featured: false,
     },
     {
       title: 'v1.4.1',

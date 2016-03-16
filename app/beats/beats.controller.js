@@ -4,6 +4,8 @@ angular.module('app.modules')
 function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance, beatsService, composeService) {
   var vm = this;
   var beatsPerPage = 6;
+  var paginationInitBeatsNum = 15;
+  var paginationInit = true;
   //Temporarily treat vm.dataSource as a local datasource
   vm.customRefreshEnabled = false;
   vm.dataSource = [];
@@ -36,9 +38,13 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   ////////////////////////////////
 
   function pushBeatsPaginated(){
-    var skipCount = beatsPerPage*vm.pageForCustomRefresh;
+    var skipCount = vm.pageForCustomRefresh * beatsPerPage;
     if(!vm.selectedBeats.beats){
       vm.selectedBeats.beats = [];
+    }
+    if(paginationInit){
+        beatsPerPage = paginationInitBeatsNum;
+        paginationInit = false;
     }
     beatsService.fetchBySkipAndLimit(skipCount , beatsPerPage).success(function(res){
       angular.forEach(res,function(r){

@@ -261,7 +261,7 @@
               scrollNs.lastPage = currentPage;
               var curPageInfo = scrollNs.pageInfo[currentPage];
 
-              if (curPageInfo) {
+              if (curPageInfo && curPageInfo.to) {
                 element.children().detach();
                 filteredElm = Array.prototype.slice.call(listElms, curPageInfo.from, curPageInfo.to + 1);
                 bindWatchersOnVisible(filteredElm);

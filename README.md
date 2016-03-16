@@ -17,10 +17,10 @@ Modified Angular-grid by s-yadav (https://github.com/s-yadav/angulargrid)
 The Codename Of this Library is now officially Juicy(namespace: jc)!    
 TODO: Create a backend based on Express.    
 TODO: Build up a compiling workflow with Gulp + Browserify      
-TODO: Comment and tag function to add in further releases      
-TODO: Compose and Analysis module to add in further releases(optional)
-TODO: Optimize the efficiency of desktop masonry view.
-TODO: Unit Tests
+TODO: Comment and tag function to add in further releases       
+TODO: Compose and Analysis module to add in further releases(optional)     
+TODO: Optimize the efficiency of desktop masonry view.     
+TODO: Unit Tests    
 
 # How to use
 

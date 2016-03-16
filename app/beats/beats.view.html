@@ -1,14 +1,19 @@
 <div>
   <div class="wrapper-date-nav" pushpin pushpin-top="64">
-    <jc-sub-nav jc-sections="vm.tabs" jc-active="vm.currentSelectedTab" jc-settings="vm.jcSubNavSettings"></jc-sub-nav>
+    <jc-sub-nav
+      jc-sections="vm.tabs"
+      jc-active="vm.currentSelectedTab"
+      jc-settings="vm.jcSubNavSettings">
+    </jc-sub-nav>
   </div>
   <div class="container">
     <jc-masonry-cards
       jc-custom-refresh="vm.pushBeatsPaginated"
       jc-custom-refresh-enabled="vm.customRefreshEnabled"
-      jc-init-num="3"
+      jc-init-num="15"
       jc-refresh-num="6"
-      jc-data="vm.selectedBeats.beats"></jc-masonry-cards>
+      jc-data="vm.selectedBeats.beats">
+    </jc-masonry-cards>
   </div>
   <!-- FAB -->
   <div class="fixed-action-btn">

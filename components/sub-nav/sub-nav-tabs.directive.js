@@ -13,8 +13,7 @@ function jcSubNavTabs(){
   return directive;
 
   function postLink(scope, element, attrs, subNavCtrl){
-    scope.vm.tabs = subNavCtrl.sections;
-    scope.vm.active = subNavCtrl.active;
+    scope.subNavCtrl = subNavCtrl;
   }
 
   function subNavTabsCtrl($rootScope,$document,$state,$scope,appEvent) {
@@ -34,6 +33,5 @@ function jcSubNavTabs(){
       $state.go(tab.state, tab.stateParam);
       appEvent.publish('jcSubNavSectionSwitched',tab);
     }
-
   }
 }

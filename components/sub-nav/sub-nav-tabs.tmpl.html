@@ -1,7 +1,7 @@
 <div class="row" style="margin-bottom:0px;margin-right:10px">
     <ul class="tabs" tabs>
-      <li class="tab" ng-repeat="tab in vm.tabs" ng-click="vm.displaySection(tab)">
-        <a class="clickable {{vm.active.title === tab.title ? 'active' : ''}}">{{tab.title}}</a>
+      <li class="tab" ng-repeat="tab in subNavCtrl.sections" ng-click="vm.displaySection(tab)">
+        <a class="clickable {{subNavCtrl.active.title === tab.title ? 'active' : ''}}">{{tab.title}}</a>
       </li>
       <li class="disabled" style="padding-top:6px">
         <a class="waves-effect waves-teal btn-flat"
