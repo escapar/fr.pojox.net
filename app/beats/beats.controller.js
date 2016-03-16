@@ -134,6 +134,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
 
   function switchTab(event,tab){
     if(tab.stateParam && tab.stateParam.month){
+      vm.selectedBeats = [];
       getBeatOfMonth(tab.stateParam.month);
       vm.customRefreshEnabled = false;
     }else{

@@ -1,5 +1,12 @@
 <div resize>
-  <div ng-if="winWidth > 700" angular-grid="vm.displayedData" ag-id="cards" ag-infinite-scroll-distance="300" ag-infinite-scroll="vm.loadMore()" ag-performant-scroll="true">
+  <div ng-if="winWidth > 700"
+    angular-grid="vm.displayedData"
+    ag-id="cards"
+    ag-infinite-scroll-distance="300"
+    ag-infinite-scroll="vm.loadMore()"
+    ag-performant-scroll="true"
+    ag-page-size="9"
+  >
     <div ng-repeat="data in vm.displayedData track by data._id">
       <jc-card jc-show-dst="true" jc-content="data"></jc-card>
     </div>
