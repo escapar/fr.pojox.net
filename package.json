@@ -12,7 +12,7 @@
     "ng-infinite-scroll": "^1.2.1",
     "angular-scroll": "^1.0.0",
     "http-server": "^0.8.5",
-    "ui-router": "^0.2.15",
+    "angular-ui-router": "1.0.0-alpha.3",
     "materialize-css": "^0.97.5",
     "jquery":"^2.2"
   },
