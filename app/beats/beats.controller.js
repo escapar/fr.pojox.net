@@ -11,6 +11,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   vm.dataSource = [];
   vm.monthNeeded = [];
   vm.tabs = [];
+  vm.lock = false;
   vm.selectedBeats = [];
   vm.currentSelectedTab = {};
   vm.jcSubNavSettings = [
@@ -39,19 +40,28 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
 
   function pushBeatsPaginated(){
     var skipCount = vm.pageForCustomRefresh * beatsPerPage;
-    if(!vm.selectedBeats.beats){
-      vm.selectedBeats.beats = [];
-    }
     if(paginationInit){
         beatsPerPage = paginationInitBeatsNum;
         paginationInit = false;
     }
-    beatsService.fetchBySkipAndLimit(skipCount , beatsPerPage).success(function(res){
-      angular.forEach(res,function(r){
-        vm.selectedBeats.beats.push(r);
+    if(!vm.lock) {
+      vm.lock = true;
+      beatsService.fetchBySkipAndLimit(skipCount, beatsPerPage).success(res => {
+        if(res && res.length) {
+          angular.forEach(res, r => {
+              if(!vm.selectedBeats.beats){
+                vm.selectedBeats.beats = [];
+              }
+                vm.selectedBeats.beats.push(r);
+            }
+          );
+          vm.pageForCustomRefresh++;
+          vm.lock = false;
+        }else{
+          vm.lock = true;
+        }
       });
-      vm.pageForCustomRefresh ++;
-    });
+    }
   }
 
   function scrollTop(){
@@ -139,6 +149,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   }
 
   function switchTab(event,tab){
+    vm.lock = false;
     if(tab.stateParam && tab.stateParam.month){
       vm.selectedBeats = [];
       getBeatOfMonth(tab.stateParam.month);
