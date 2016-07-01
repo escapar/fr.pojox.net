@@ -29,6 +29,12 @@ function routeProvider($stateProvider, $urlRouterProvider){
        controller: 'composeCtrl',
        controllerAs: 'vm'
      }).
+     state('login', {
+       url:'/login',
+       templateUrl: 'app/login/login.view.html',
+       controller: 'loginCtrl',
+       controllerAs: 'vm'
+     }).
      state('analysis', {
        url:'/analysis',
        templateUrl: 'app/analysis/analysis.view.html',
