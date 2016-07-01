@@ -10,10 +10,8 @@ function loginCtrl ($scope, $http, $state, $document, appEvent, loginService) {
     };
 
     function loginOrReg(){
-        loginService.login(vm.userLogin).then(res=>{
-            console.log(res);
-            if(res == null){
-            loginService.reg(vm.userLogin);
-        }});
+        loginService.login(vm.userLogin).error(res=>
+            loginService.reg(vm.userLogin).success(r=>console.log(r))
+        );
     }
 }
