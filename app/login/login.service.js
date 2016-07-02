@@ -9,10 +9,24 @@ function loginService ($http, $state, $document, APP_CONST) {
     return service;
 
     function login(userLogin){
-        return $http.post(APP_CONST.api + 'user/login',userLogin);
+        return $http({
+            url: APP_CONST.api + 'user/login',
+            dataType: 'json',
+            method: 'POST',
+            data: userLogin,
+            headers: {
+            "Content-Type": "application/json"
+        }});
     }
 
     function reg(userLogin){
-        return $http.post(APP_CONST.api + 'user/reg',userLogin);
+        return $http({
+            url: APP_CONST.api + 'user/reg',
+            dataType: 'json',
+            method: 'POST',
+            data: userLogin,
+            headers: {
+                "Content-Type": "application/json"
+            }});
     }
 }
