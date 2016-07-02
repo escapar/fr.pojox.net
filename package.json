@@ -14,7 +14,8 @@
     "http-server": "^0.8.5",
     "angular-ui-router": "1.0.0-alpha.3",
     "materialize-css": "^0.97.5",
-    "jquery":"^2.2"
+    "jquery":"^2.2",
+    "angular-jwt":"^0.0.9"
   },
   "devDependencies": {
   }

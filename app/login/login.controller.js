@@ -10,8 +10,8 @@ function loginCtrl ($scope, $http, $state, $document, appEvent, loginService) {
     };
 
     function loginOrReg(){
-        loginService.login(vm.userLogin).error(res=>
-            loginService.reg(vm.userLogin).success(r=>console.log(r))
-        );
+        loginService.login(vm.userLogin).success(token=>localStorage.setItem('juicy_token', token)).error(res=>
+            loginService.reg(vm.userLogin).success(token=>localStorage.setItem('juicy_token', token))
+        )
     }
 }
