@@ -6,9 +6,10 @@ function topicsService ($http, $state, $document, APP_CONST) {
     fetchAll: fetchAll,
     fetchByMonth: fetchByMonth,
     fetchBySkipAndLimit : fetchBySkipAndLimit,
-    fetchAvailableMonths : fetchAvailableMonths
+    fetchAvailableMonths : fetchAvailableMonths,
+    fetchOne:fetchOne
   };
-  
+
   return service;
 
   function fetchAll(){
@@ -17,6 +18,14 @@ function topicsService ($http, $state, $document, APP_CONST) {
 
   function fetchBySkipAndLimit(skip ,limit){
     return $http.get(APP_CONST.api + 'v1/topics?sort=-time&skip=' + skip + '&limit=' + limit +'&select=-content');
+  }
+/*
+  function fetchOne(id){
+    return $http.get(APP_CONST.api + 'v1/topics?query={"_id":"'+id+'"}');
+  }
+*/
+  function fetchOne(id){
+    return $http.get(APP_CONST.api + 'v1/topics/'+ id);
   }
 
   function fetchByMonth(yymm, duration){

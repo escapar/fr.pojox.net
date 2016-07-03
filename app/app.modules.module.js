@@ -1,1 +1,1 @@
-angular.module('app.modules',['angularGrid','duScroll','angular-jwt']);
+angular.module('app.modules',['angularGrid','duScroll','angular-jwt','ng-showdown']);

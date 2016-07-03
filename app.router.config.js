@@ -46,6 +46,12 @@ function routeProvider($stateProvider, $urlRouterProvider){
        templateUrl: 'app/topics/topics.view.html',
        controller: 'topicsCtrl',
        controllerAs: 'vm'
+     }).
+     state('topics-detail', {
+       url:'/topics/:id',
+       templateUrl: 'app/topics/topics-detail.view.html',
+       controller: 'topicsDetailCtrl',
+       controllerAs: 'vm'
      });
 
 }
