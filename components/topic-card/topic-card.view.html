@@ -1,0 +1,22 @@
+<div class="card hoverable" ng-click="vm.selectTopic(vm.jcTopic._id,$event)"  ng-class="vm.jcTopic.featured? 'light-blue darken-1' : 'white'">
+
+    <div ng-if="vm.jcTopicBrief" class="card-image waves-effect waves-block waves-light">
+      <img class="activator" ng-src="{{::vm.jcTopic.thumbnail}}"/>
+    </div>
+    <div class="card-content" ng-class="vm.jcTopic.featured || !vm.jcTopicBrief? 'blue-text':'black-text'">
+            <span class="card-title activator" ng-class="vm.jcTopic.featured || !vm.jcTopicBrief? 'blue-text':'black-text'" style="margin-left:0">{{::vm.jcTopic.title}}</span>
+            <p>
+              <span>{{::vm.jcTopic.createdAt | date:"yyyy-MM-dd hh:mm:ss"}}</span>
+            </p>
+
+      <p ng-if="vm.jcTopicBrief">{{::vm.jcTopic.summary}}</p>
+      <p ng-if="!vm.jcTopicBrief" ng-bind-html="vm.jcTopic.html"></p>
+    </div>
+
+    <div class="card-action" ng-if="!vm.jcTopicBrief">
+        <a ng-if="vm.jcTopicShare" ng-click="vm.share()">
+            分享到微博
+        </a>
+    </div>
+
+</div>
