@@ -1,7 +1,7 @@
 angular.module('app.modules')
        .controller('beatsCtrl',beatsCtrl);
 
-function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInstance, beatsService, composeService) {
+function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,angularGridInstance, beatsService, composeService) {
   var vm = this;
   var beatsPerPage = 6;
   var paginationInitBeatsNum = 15;
@@ -99,7 +99,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
             return;
           }
         }
-      };
+      }
     });
   }
 
@@ -120,6 +120,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
   }
 
   function activate(){
+    topicsService.fetchBySkipAndLimit(0,10).success(res=>vm.topicList = res);
     generatejcSubNavTabs().then(function(tabs){
       vm.tabs = tabs;
       if($state.params.month != null){
@@ -131,6 +132,8 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
       }
     });
   }
+
+
 
   function generatejcSubNavTabs(){
     var tabs=[{
@@ -183,10 +186,15 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
     })
   }*/
 
+  function handleTopicSelected(event,id){
+    $state.go("topics-detail",id);
+  }
+
   ///////////////////
   appEvent.subscribe('jcSubNavSectionSwitched', switchTab, $scope);
   appEvent.subscribe('outputData', outputData, $scope);
   appEvent.subscribe('deleteData', deleteData, $scope);
+  $scope.$on("topicSelected",handleTopicSelected);
 
 
 

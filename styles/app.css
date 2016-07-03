@@ -10,6 +10,15 @@
   width: 100%
 }
 
+div.wrapper-topic-list-elem.pinned{
+    top:48px !important;
+    width:inherit; !important;
+}
+.wrapper-topic-list{
+    position:relative !important;
+    z-index: 1;
+}
+
 .slider .slides li{
   position:absolute !important;
 
