@@ -1,10 +1,11 @@
-<div resize>
+<div id="scroll-cont" resize>
   <div ng-if="winWidth > 700"
     angular-grid="vm.displayedData"
     ag-id="cards"
-    ag-infinite-scroll-distance="10"
+    ag-infinite-scroll-distance="70"
     ag-infinite-scroll="vm.loadMore()"
     ag-performant-scroll="true"
+    ag-scroll-container="#scroll-cont"
     ag-page-size="9"
   >
     <div ng-repeat="data in vm.displayedData track by data._id">

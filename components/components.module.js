@@ -1,1 +1,1 @@
-angular.module('app.componentss',['angularGrid','duScroll','infinite-scroll']);
+angular.module('app.components',['angularGrid','duScroll','infinite-scroll']);

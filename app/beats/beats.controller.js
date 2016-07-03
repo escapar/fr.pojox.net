@@ -42,13 +42,13 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
     var skipCount = vm.pageForCustomRefresh * beatsPerPage;
     if(paginationInit){
         beatsPerPage = paginationInitBeatsNum;
-        paginationInit = false;
     }
     if(!vm.lock) {
       vm.lock = true;
       beatsService.fetchBySkipAndLimit(skipCount, beatsPerPage).success(res => {
         if(res && res.length) {
           angular.forEach(res, r => {
+              r.init　=　paginationInit;
               if(!vm.selectedBeats.beats){
                 vm.selectedBeats.beats = [];
               }
@@ -60,7 +60,8 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, angularGridInsta
         }else{
           vm.lock = true;
         }
-      });
+        paginationInit = false;
+      })
     }
   }
 

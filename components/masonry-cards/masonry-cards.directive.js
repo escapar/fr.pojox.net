@@ -81,7 +81,7 @@ function jcMasonryCards($q){
         }
         //Ensure correct number of cards displayed when $filter is off
         if(initPush){
-          vm.data[currentCard].masonryInit = true;
+          vm.data[currentCard].init = true;
         }
         displayedDataMirror.push(vm.data[currentCard]);
         if(displayFilter(vm.data[currentCard])){
@@ -125,5 +125,9 @@ function jcMasonryCards($q){
           handleChange();
         }
     },true);
+
+    $scope.$on('$repeatFinished', function(event, data) {
+      angularGridInstance.cards.refresh();
+    });
   }
 }

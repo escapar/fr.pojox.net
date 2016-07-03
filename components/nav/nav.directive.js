@@ -1,4 +1,4 @@
-angular.module('app.componentss')
+angular.module('app.components')
        .directive('jcNav',jcNav);
 
 function jcNav($state){

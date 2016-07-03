@@ -1,4 +1,4 @@
-angular.module('app.componentss')
+angular.module('app.components')
        .directive('jcCardContent',jcCardContent);
 
 function jcCardContent(angularGridInstance){
@@ -18,6 +18,7 @@ function jcCardContent(angularGridInstance){
     scope.vm.showDst = cardCtrl.showDst;
     scope.vm.utcCn = cardCtrl.utcCn;
     scope.vm.hideProgress = cardCtrl.hideProgress;
+    scope.vm.refreshInit();
   }
 
   function cardContentCtrl($scope, $filter) {
@@ -27,7 +28,7 @@ function jcCardContent(angularGridInstance){
     ///////////////////////////
 
     function refreshInit(){
-      if(!angular.isUndefined(angularGridInstance) && !angular.isUndefined(angularGridInstance.cards)){
+      if(!angular.isUndefined(angularGridInstance) && !angular.isUndefined(angularGridInstance.cards)　&&　vm.content.init){
         angularGridInstance.cards.refresh();
       }
     }
