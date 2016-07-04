@@ -6,12 +6,17 @@ function beatsService ($http, $state, $document, APP_CONST) {
     fetchAll: fetchAll,
     fetchByMonth: fetchByMonth,
     fetchBySkipAndLimit : fetchBySkipAndLimit,
-    fetchAvailableMonths : fetchAvailableMonths
+    fetchAvailableMonths : fetchAvailableMonths,
+    deleteOne : deleteOne
   }
   return service;
 
   function fetchAll(){
     return $http.get(APP_CONST.api + 'v1/beats');
+  }
+
+  function deleteOne(id){
+    return $http.delete(APP_CONST.api + 'v1/beats/' + id);
   }
 
   function fetchBySkipAndLimit(skip ,limit){

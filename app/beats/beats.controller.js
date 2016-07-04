@@ -1,14 +1,13 @@
 angular.module('app.modules')
        .controller('beatsCtrl',beatsCtrl);
 
-function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,angularGridInstance, beatsService, composeService) {
+function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jwtHelper, beatsService, composeService) {
   var vm = this;
   var beatsPerPage = 6;
   var paginationInitBeatsNum = 15;
   var paginationInit = true;
   //Temporarily treat vm.dataSource as a local datasource
   vm.customRefreshEnabled = false;
-  vm.dataSource = [];
   vm.monthNeeded = [];
   vm.tabs = [];
   vm.lock = false;
@@ -69,10 +68,10 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,an
     $document.scrollTop(0, 2000);
   }
 
-  function outputData(){
+  function featureData(){
     var output = [];
     output.beats=[];
-    vm.dataSource.forEach(function(data){
+    vm.selectedBeats.forEach(function(data){
       if(checkMonth(data.time)){
         output.push(data);
       };
@@ -89,18 +88,8 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,an
 
   }
 
-  function deleteData(event,time){
-    var output = [];
-    vm.dataSource.forEach(function(data){
-        if(data.time === vm.currentSelectedMonth){
-        for(var i = 0 ; i< data.beats.length; i++){
-          if(data.beats[i].time === time){
-            data.beats.splice(i,1);
-            return;
-          }
-        }
-      }
-    });
+  function deleteData(event,id){
+    beatsService.deleteOne(id);
   }
 
   function getBeatOfMonth(month){
@@ -192,7 +181,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,an
 
   ///////////////////
   appEvent.subscribe('jcSubNavSectionSwitched', switchTab, $scope);
-  appEvent.subscribe('outputData', outputData, $scope);
+  appEvent.subscribe('featureData', featureData, $scope);
   appEvent.subscribe('deleteData', deleteData, $scope);
   $scope.$on("topicSelected",handleTopicSelected);
 

@@ -1,4 +1,4 @@
-<div class="card hoverable" ng-class="vm.content.featured? 'light-blue darken-1' : 'red lighten-2'">
+<div ng-if="!vm.deleted" class="card hoverable" ng-class="vm.content.featured? 'light-blue darken-1' : 'red lighten-2'">
   <jc-card-content></jc-card-content>
-  <jc-card-control ng-if="!vm.prod"></jc-card-control>
+  <jc-card-control ng-if="vm.isAdmin"></jc-card-control>
 </div>

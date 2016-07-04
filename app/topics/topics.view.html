@@ -1,8 +1,13 @@
 <div class="container">
-<jc-topic-list
-        flex-xs flex-gt-xs="50"
-        jc-topics="vm.topicList"
-        jc-topic-brief="true"
->
-</jc-topic-list>
+
+    <div  infinite-scroll-distance="1" infinite-scroll="vm.loadMore()">
+        <div ng-repeat="top in vm.topicList track by $index">
+            <jc-topic-card
+                    class="repeated-item"
+                    jc-topic="top"
+                    jc-topic-brief="true"
+            >
+            </jc-topic-card>
+            </div>
+    </div>
 </div>

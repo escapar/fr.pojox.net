@@ -21,23 +21,16 @@ function jcCardControl(){
   function cardControlCtrl($scope,appEvent) {
     var vm = this;
     vm.deleteData = deleteData;
-    vm.outputData = outputData;
     vm.feature = feature;
-    vm.weired = weired;
 
     ////////////////////////////////
 
     function deleteData(){
-      appEvent.publish('deleteData',vm.content.time);
-    }
-    function outputData(){
-      appEvent.publish('outputData');
+      $scope.cardCtrl.deleted = true;
+      appEvent.publish('deleteData',vm.content._id);
     }
     function feature(){
-      $scope.cardCtrl.content.featured = true;
-    }
-    function weired(){
-      $scope.cardCtrl.content.safe = false;
+      appEvent.publish('featureData',vm.content._id);
     }
   }
 }

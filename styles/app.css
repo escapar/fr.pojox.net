@@ -10,6 +10,9 @@
   width: 100%
 }
 
+.card-action{
+    border-top:1px solid rgba(255,255,255,0.2) !important;
+}
 div.wrapper-topic-list-elem.pinned{
     top:48px !important;
     width:inherit; !important;

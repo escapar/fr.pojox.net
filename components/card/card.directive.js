@@ -16,9 +16,11 @@ function jcCard(){
   };
   return directive;
 
-  function cardCtrl(APP_CONST) {
+  function cardCtrl(APP_CONST,jwtHelper) {
     var vm = this;
+    vm.deleted = false;
     vm.prod = APP_CONST.production;
-
+    var payload = jwtHelper.decodeToken(localStorage.getItem('juicy_token'));
+    vm.isAdmin = payload.isAdmin;
   }
 }

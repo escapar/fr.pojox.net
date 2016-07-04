@@ -9,13 +9,13 @@
     ag-page-size="9"
   >
     <div ng-repeat="data in vm.displayedData track by data._id">
-      <jc-card jc-show-dst="true" jc-content="data"></jc-card>
+      <jc-card jc-show-utc-cn="true" jc-content="data"></jc-card>
     </div>
   </div>
 
   <div ng-if="winWidth <= 700" infinite-scroll-distance="2" infinite-scroll="vm.loadMore()">
     <div ng-repeat="data in vm.displayedData track by data._id">
-      <jc-card jc-show-dst="true" jc-content="data" jc-hide-progress="true"></jc-card>
+      <jc-card jc-show-utc-cn="true" jc-content="data" jc-hide-progress="true"></jc-card>
     </div>
   </div>
 </div>

@@ -1,15 +1,4 @@
 <div layout="column">
-    <md-toolbar ng-if="vm.jcTopicsInfo!==undefined" class="md-menu-toolbar list-head">
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings" disabled>
-                <md-icon>{{vm.jcTopicsInfo.icon}}</md-icon>
-            </md-button>
-            <h2 class="topic-list-head">
-                <span>{{vm.jcTopicsInfo.title}}</span>
-            </h2>
-            <span flex></span>
-        </div>
-    </md-toolbar>
 
     <div ng-repeat="top in vm.jcTopics track by $index">
         <jc-topic-card

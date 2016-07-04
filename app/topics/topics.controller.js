@@ -4,12 +4,48 @@ angular.module('app.modules')
 function topicsCtrl ($scope, $http, $state, $document, appEvent, topicsService) {
   var vm = this;
   vm.topicList = [];
-  init();
+  vm.start = 0;
+  vm.reachedEnd = false;
+  vm.lock = false;
+  vm.loadMore = loadMore;
+  vm.pageForCustomRefresh = 0;
+  var paginationInit = true;
+  var paginationInitBeatsNum = 3;
+  var beatsPerPage = 3;
+ // init();
 
   /////////
 
-  function init(){
-    topicsService.fetchBySkipAndLimit(0,10).success(res=>vm.topicList = res);
+  function loadMore(){
+    pushBeatsPaginated();
+
+  }
+
+  function pushBeatsPaginated(){
+    var skipCount = vm.pageForCustomRefresh * beatsPerPage;
+    if(paginationInit){
+      beatsPerPage = paginationInitBeatsNum;
+    }
+    if(!vm.lock) {
+      vm.lock = true;
+      topicsService.fetchBySkipAndLimit(skipCount, beatsPerPage).success(res=> {
+        if(res && res.length) {
+          angular.forEach(res, r => {
+                r.init　=　paginationInit;
+                if(!vm.topicList){
+                  vm.topicList = [];
+                }
+                vm.topicList.push(r);
+              }
+          );
+          vm.pageForCustomRefresh++;
+          vm.lock = false;
+        }else{
+          vm.lock = true;
+        }
+        paginationInit = false;
+      })
+    }
   }
 
   function handleTopicSelected(event,id){

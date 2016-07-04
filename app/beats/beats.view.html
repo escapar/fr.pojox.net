@@ -6,7 +6,7 @@
       jc-settings="vm.jcSubNavSettings">
     </jc-sub-nav>
   </div>
-  <div class=" col s8">
+  <div ng-class="vm.customRefreshEnabled? 'col s8' : 'col s12'">
     <jc-masonry-cards
       jc-custom-refresh="vm.pushBeatsPaginated"
       jc-custom-refresh-enabled="vm.customRefreshEnabled"
@@ -15,15 +15,15 @@
       jc-data="vm.selectedBeats.beats">
     </jc-masonry-cards>
   </div>
-  <div class="wrapper-topic-list col s4" style="width: 31.5%;padding: 0">
+  <div class="wrapper-topic-list col s4" style="width: 31.5%;padding: 0" ng-if="vm.customRefreshEnabled">
     <div class="wrapper-topic-list-elem" pushpin pushpin-top="64" pushpin-bottom="Infinity">
-    <jc-topic-list
+      <jc-topic-list
             flex-xs flex-gt-xs="50"
             jc-topics="vm.topicList"
             jc-topic-brief="true"
-    >
-    </jc-topic-list>
-  </div>
+      >
+      </jc-topic-list>
+    </div>
   </div>
   <!-- FAB -->
   <div class="fixed-action-btn">

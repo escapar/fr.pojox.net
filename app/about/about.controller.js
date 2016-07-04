@@ -11,10 +11,10 @@ function aboutCtrl () {
       featured: true
     },
     {
-      title: 'Recent Release v1.5',
-      time: 1458114983000,
-      text: 'Multiple Bug Fixes For Recent Tab',
-      featured: true,
+      title: 'Recent Release v2 alpha 0',
+      time: 1467649952611,
+      text: 'Topic Modules with Markdown , ExpressJS Backend and UserLogin',
+      featured: false,
     },
     {
       title: 'AngularJS Libs',
@@ -26,6 +26,12 @@ function aboutCtrl () {
       title: 'About Me',
       time: 1456420305000,
       text: 'Author : POJOa\nSite : http://src.moe/',
+      featured: false
+    },
+    {
+      title: 'v1.5',
+      time: 1458114983000,
+      text: 'Multiple Bug Fixes For Recent Tab',
       featured: false
     },
     {
