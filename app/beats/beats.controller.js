@@ -120,7 +120,7 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,an
   }
 
   function activate(){
-    topicsService.fetchBySkipAndLimit(0,10).success(res=>vm.topicList = res);
+    topicsService.fetchBySkipAndLimit(0,3).success(res=>vm.topicList = res);
     generatejcSubNavTabs().then(function(tabs){
       vm.tabs = tabs;
       if($state.params.month != null){
