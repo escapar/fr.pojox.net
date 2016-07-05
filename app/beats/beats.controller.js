@@ -1,11 +1,19 @@
 angular.module('app.modules')
        .controller('beatsCtrl',beatsCtrl);
 
-function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jwtHelper, beatsService, composeService) {
+function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jwtHelper, beatsService) {
   var vm = this;
   var beatsPerPage = 6;
   var paginationInitBeatsNum = 15;
   var paginationInit = true;
+  vm.submitBeat = submitBeat;
+  vm.newBeat = {
+    // time: 0,  to be populated in backend
+    text: "",
+    featured : false,
+    safe: true
+  };
+
   //Temporarily treat vm.dataSource as a local datasource
   vm.customRefreshEnabled = false;
   vm.monthNeeded = [];
@@ -68,27 +76,11 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jw
     $document.scrollTop(0, 2000);
   }
 
-  function featureData(){
-    var output = [];
-    output.beats=[];
-    vm.selectedBeats.forEach(function(data){
-      if(checkMonth(data.time)){
-        output.push(data);
-      };
-    });
-    var newWindow = window.open();
-    newWindow.document.write('<pre>'+JSON.stringify(output,undefined, 4)+'</pre>');
-
-    function checkMonth(time){
-      for(var i = 0; i < vm.monthNeeded.length; i++){
-        if(vm.monthNeeded[i].indexOf(time) >= 0) return true;
-      }
-      return false;
-    }
-
+  function modifyBeats(event,beats){
+    vm.newBeat = beats;
   }
 
-  function deleteData(event,id){
+  function deleteBeats(event,id){
     beatsService.deleteOne(id);
   }
 
@@ -179,10 +171,14 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jw
     $state.go("topics-detail",id);
   }
 
+  function submitBeat(){
+    beatsService.postBeat(vm.newBeat);
+  }
+
   ///////////////////
   appEvent.subscribe('jcSubNavSectionSwitched', switchTab, $scope);
-  appEvent.subscribe('featureData', featureData, $scope);
-  appEvent.subscribe('deleteData', deleteData, $scope);
+  appEvent.subscribe('modifyBeats', modifyBeats, $scope);
+  appEvent.subscribe('deleteBeats', deleteBeats, $scope);
   $scope.$on("topicSelected",handleTopicSelected);
 
 

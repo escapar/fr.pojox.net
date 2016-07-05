@@ -7,7 +7,8 @@ function beatsService ($http, $state, $document, APP_CONST) {
     fetchByMonth: fetchByMonth,
     fetchBySkipAndLimit : fetchBySkipAndLimit,
     fetchAvailableMonths : fetchAvailableMonths,
-    deleteOne : deleteOne
+    deleteOne : deleteOne,
+    postBeat : postBeat
   }
   return service;
 
@@ -30,5 +31,14 @@ function beatsService ($http, $state, $document, APP_CONST) {
   function fetchAvailableMonths(){
     return $http.get(APP_CONST.api + 'beats/months');
   }
+
+  function postBeat(beat){
+    if(!beat._id) {
+      return $http.post(APP_CONST.api + 'v1/beats', beat);
+    }else{
+      return $http.patch(APP_CONST.api + 'v1/beats/'+beat._id, beat);
+    }
+  }
+  
 
 }

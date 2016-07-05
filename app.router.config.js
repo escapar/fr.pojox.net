@@ -29,6 +29,12 @@ function routeProvider($stateProvider, $urlRouterProvider){
        controller: 'composeCtrl',
        controllerAs: 'vm'
      }).
+     state('compose-edit', {
+       url:'/compose/:id',
+       templateUrl: 'app/compose/compose.view.html',
+       controller: 'composeCtrl',
+       controllerAs: 'vm'
+     }).
      state('login', {
        url:'/login',
        templateUrl: 'app/login/login.view.html',

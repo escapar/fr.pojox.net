@@ -26,7 +26,32 @@
     </div>
   </div>
   <!-- FAB -->
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light red" ng-click="vm.scrollTop()">TOP</a>
+
+  <div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large red" href='#composeBeats' modal>
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red" ng-click="vm.scrollTop()"><i class="material-icons">publish</i></a></li>
+    </ul>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="composeBeats" class="modal">
+    <div class="modal-content">
+      <div class="right">
+        <input type="checkbox" ng-model="vm.newBeat.featured" class="filled-in" id="feature-box" checked="checked" />
+        <label for="feature-box">Featured</label>
+        <a class="modal-action waves-effect waves-green btn clickable">Images</a>
+
+      </div>
+          <span class="card-title pink-text" style="margin-left:0px">Compose A New Beat</span>
+          <textarea id="new-beat" ng-model="vm.newBeat.text" placeholder="Contents goes here" class="materialize-textarea" style="min-height:4rem;position:relative"/>
+    </div>
+    <div class="modal-footer">
+
+      <a class="modal-action modal-close waves-effect waves-green btn-flat clickable" ng-click="vm.submitBeat()">Submit</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Abandon</a>
+    </div>
   </div>
 </div>

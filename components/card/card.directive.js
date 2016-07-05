@@ -18,9 +18,10 @@ function jcCard(){
 
   function cardCtrl(APP_CONST,jwtHelper) {
     var vm = this;
+    var payload = jwtHelper.decodeToken(localStorage.getItem('juicy_token'));
     vm.deleted = false;
     vm.prod = APP_CONST.production;
-    var payload = jwtHelper.decodeToken(localStorage.getItem('juicy_token'));
     vm.isAdmin = payload.isAdmin;
+    
   }
 }

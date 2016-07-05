@@ -7,7 +7,8 @@ function topicsService ($http, $state, $document, APP_CONST) {
     fetchByMonth: fetchByMonth,
     fetchBySkipAndLimit : fetchBySkipAndLimit,
     fetchAvailableMonths : fetchAvailableMonths,
-    fetchOne:fetchOne
+    fetchOne:fetchOne,
+    postTopic : postTopic
   };
 
   return service;
@@ -34,6 +35,14 @@ function topicsService ($http, $state, $document, APP_CONST) {
 
   function fetchAvailableMonths(){
     return $http.get(APP_CONST.api + 'topics/months');
+  }
+
+  function postTopic(topic){
+    if(!topic._id) {
+      return $http.post(APP_CONST.api + 'v1/topics', topic);
+    }else{
+      return $http.patch(APP_CONST.api + 'v1/topics/'+topic._id, topic);
+    }
   }
 
 }

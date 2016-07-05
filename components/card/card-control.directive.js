@@ -20,17 +20,17 @@ function jcCardControl(){
 
   function cardControlCtrl($scope,appEvent) {
     var vm = this;
-    vm.deleteData = deleteData;
-    vm.feature = feature;
+    vm.deleteBeats = deleteBeats;
+    vm.modifyBeats = modifyBeats;
 
     ////////////////////////////////
 
-    function deleteData(){
+    function deleteBeats(){
       $scope.cardCtrl.deleted = true;
-      appEvent.publish('deleteData',vm.content._id);
+      appEvent.publish('deleteBeats',vm.content._id);
     }
-    function feature(){
-      appEvent.publish('featureData',vm.content._id);
+    function modifyBeats(){
+      appEvent.publish('modifyBeats',vm.content);
     }
   }
 }

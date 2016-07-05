@@ -1,16 +1,10 @@
 angular.module('app.modules')
        .controller('composeCtrl',composeCtrl);
 
-function composeCtrl ($scope, $http, $state, $document, appEvent, composeService) {
+function composeCtrl ($scope, $http, $state, $document, appEvent,topicsService) {
   var vm = this;
-  vm.submitBeat = submitBeat;
   vm.submitTopic = submitTopic;
-  vm.newBeat = {
-      // time: 0,  to be populated in backend
-      text: "",
-      featured : false,
-      safe: true
-  };
+  vm.topicId = $state.params.id;
 
   vm.newTopic = {
     // time: 0,  to be populated in backend
@@ -19,11 +13,16 @@ function composeCtrl ($scope, $http, $state, $document, appEvent, composeService
     featured : false
   };
 
-  function submitBeat(){
-    composeService.postBeat(vm.newBeat);
+  init();
+  /////////
+
+  function init(){
+    if(vm.topicId){
+      topicsService.fetchOne(vm.topicId).success(res=>vm.newTopic = res);
+    }
   }
 
   function submitTopic(){
-    composeService.postTopic(vm.newTopic);
+    topicsService.postTopic(vm.newTopic);
   }
 }
