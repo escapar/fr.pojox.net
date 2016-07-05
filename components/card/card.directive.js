@@ -16,12 +16,11 @@ function jcCard(){
   };
   return directive;
 
-  function cardCtrl(APP_CONST,jwtHelper) {
+  function cardCtrl(APP_CONST,appService) {
     var vm = this;
-    var payload = jwtHelper.decodeToken(localStorage.getItem('juicy_token'));
     vm.deleted = false;
     vm.prod = APP_CONST.production;
-    vm.isAdmin = payload.isAdmin;
+    vm.isAdmin = appService.isAdmin();
     
   }
 }

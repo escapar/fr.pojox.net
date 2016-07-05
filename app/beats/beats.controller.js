@@ -1,11 +1,12 @@
 angular.module('app.modules')
        .controller('beatsCtrl',beatsCtrl);
 
-function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jwtHelper, beatsService) {
+function beatsCtrl ($scope, $http, $state, $document, appEvent,appService, topicsService,jwtHelper, beatsService) {
   var vm = this;
   var beatsPerPage = 6;
   var paginationInitBeatsNum = 15;
   var paginationInit = true;
+  vm.upload = upload;
   vm.submitBeat = submitBeat;
   vm.newBeat = {
     // time: 0,  to be populated in backend
@@ -45,6 +46,9 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jw
   activate();
   ////////////////////////////////
 
+  function deleteImages(){
+    vm.newBeat.images;
+  }
   function pushBeatsPaginated(){
     var skipCount = vm.pageForCustomRefresh * beatsPerPage;
     if(paginationInit){
@@ -175,11 +179,22 @@ function beatsCtrl ($scope, $http, $state, $document, appEvent, topicsService,jw
     beatsService.postBeat(vm.newBeat);
   }
 
+  function handleEditTopic(event,id){
+    $state.go("compose-edit",id);
+  }
+
+
+  function upload($files, $event, $flow){
+    appService.uploadImage($flow.files[0].file)
+        .success(data=>vm.newBeat.image.push('http://ww4.sinaimg.cn/large/'+data.pid));
+  }
+
   ///////////////////
   appEvent.subscribe('jcSubNavSectionSwitched', switchTab, $scope);
   appEvent.subscribe('modifyBeats', modifyBeats, $scope);
   appEvent.subscribe('deleteBeats', deleteBeats, $scope);
-  $scope.$on("topicSelected",handleTopicSelected);
+  appEvent.subscribe("topicSelected",handleTopicSelected,$scope);
+  appEvent.subscribe("editTopic",handleEditTopic,$scope);
 
 
 

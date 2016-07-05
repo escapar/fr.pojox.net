@@ -1,9 +1,10 @@
 angular.module('app.modules')
        .controller('composeCtrl',composeCtrl);
 
-function composeCtrl ($scope, $http, $state, $document, appEvent,topicsService) {
+function composeCtrl ($scope, $http, $state, $document, appEvent,appService,topicsService) {
   var vm = this;
   vm.submitTopic = submitTopic;
+  vm.upload = upload;
   vm.topicId = $state.params.id;
 
   vm.newTopic = {
@@ -25,4 +26,12 @@ function composeCtrl ($scope, $http, $state, $document, appEvent,topicsService) 
   function submitTopic(){
     topicsService.postTopic(vm.newTopic);
   }
+
+  function upload($files, $event, $flow){
+    appService.uploadImage($flow.files[0].file)
+        .success(data=>vm.newTopic.content+=('![image](http://ww4.sinaimg.cn/large/'+data.pid+')'));
+  }
+
+
+
 }

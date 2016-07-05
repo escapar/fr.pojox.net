@@ -6,7 +6,7 @@
       jc-settings="vm.jcSubNavSettings">
     </jc-sub-nav>
   </div>
-  <div ng-class="vm.customRefreshEnabled? 'col s8' : 'col s12'">
+  <div ng-class="vm.customRefreshEnabled? 'col s12 m8 l8' : 'col s12 m12 l12'">
     <jc-masonry-cards
       jc-custom-refresh="vm.pushBeatsPaginated"
       jc-custom-refresh-enabled="vm.customRefreshEnabled"
@@ -15,15 +15,18 @@
       jc-data="vm.selectedBeats.beats">
     </jc-masonry-cards>
   </div>
-  <div class="wrapper-topic-list col s4" style="width: 31.5%;padding: 0" ng-if="vm.customRefreshEnabled">
+  <div class="wrapper-topic-list col m4 l4hide-on-small-only" style="width: 31.5%;padding: 0" ng-if="vm.customRefreshEnabled">
     <div class="wrapper-topic-list-elem" pushpin pushpin-top="64" pushpin-bottom="Infinity">
-      <jc-topic-list
-            flex-xs flex-gt-xs="50"
-            jc-topics="vm.topicList"
-            jc-topic-brief="true"
-      >
-      </jc-topic-list>
+      <div ng-repeat="top in vm.topicList track by $index">
+        <jc-topic-card
+                class="repeated-item"
+                jc-topic="top"
+                jc-topic-brief="true"
+        >
+        </jc-topic-card>
+      </div>
     </div>
+
   </div>
   <!-- FAB -->
 
@@ -39,14 +42,45 @@
   <!-- Modal Structure -->
   <div id="composeBeats" class="modal">
     <div class="modal-content">
-      <div class="right">
+      <div flow-init
+           flow-files-submitted="vm.upload( $files, $event, $flow )"
+           flow-file-success="$file.msg = $message"
+           class="right">
         <input type="checkbox" ng-model="vm.newBeat.featured" class="filled-in" id="feature-box" checked="checked" />
         <label for="feature-box">Featured</label>
-        <a class="modal-action waves-effect waves-green btn clickable">Images</a>
+        <span class="modal-action waves-effect waves-green btn clickable" flow-btn>Images({{vm.newBeat.image.length}})</span>
+        <span class="modal-action waves-effect waves-green btn clickable" ng-click="vm.newBeat.image=[]">KillAll</span>
 
       </div>
-          <span class="card-title pink-text" style="margin-left:0px">Compose A New Beat</span>
-          <textarea id="new-beat" ng-model="vm.newBeat.text" placeholder="Contents goes here" class="materialize-textarea" style="min-height:4rem;position:relative"/>
+      <span class="card-title pink-text" style="margin-left:0px">Compose A New Beat</span>
+      <textarea id="new-beat" ng-model="vm.newBeat.text" placeholder="Contents goes here" class="materialize-textarea" style="min-height:4rem;position:relative"/>
+
+      <div class="card hoverable" ng-class="vm.newBeat.content.featured? 'light-blue darken-1' : 'red lighten-2'">
+
+      <div class="grid">
+        <div ng-if="vm.newBeat.image.length" class="card-image" ng-repeat="url in vm.newBeat.image track by $index">
+          <div class="progress" ng-if="!vm.hideProgress">
+            <div class="indeterminate"></div>
+          </div>
+          <img materialboxed class="materialboxed" ng-src="{{url}}" class="grid-img"></img>
+        </div>
+      <div class="card-content white-text">
+    <span ng-if="vm.newBeat.content.title" class="card-title">
+      <span>{{vm.newBeat.title}}</span>
+    </span>
+        <div>
+          <pre>{{vm.newBeat.text}}</pre>
+        </div>
+        <div class="left-align" ng-class="vm.newBeat.content.featured? 'yellow-text' : 'white-text'">
+          <span>{{vm.newBeat.time}}</span>
+        </div>
+        <div class="yellow-text right-align" ng-if="vm.newBeat.content.featured">
+          ★Featured
+        </div>
+      </div>
+      </div>
+</div>
+
     </div>
     <div class="modal-footer">
 

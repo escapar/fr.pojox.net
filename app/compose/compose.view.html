@@ -30,6 +30,8 @@
     <div class="col s6">
         <input ng-model="vm.newTopic.title" class="card-title pink-text" style="margin-left:0px" />
         <textarea id="new-content-brief" ng-model="vm.newTopic.summary" placeholder="Summary goes here" class="materialize-textarea" style="min-height:3rem;position:relative"/>
+        <input id="new-content-thumb" ng-model="vm.newTopic.thumbnail" placeholder="Thumb goes here" class="materialize-textarea" style="position:relative"/>
+
         <textarea id="new-topic" ng-model="vm.newTopic.content" placeholder="Contents goes here"
                                         class="materialize-textarea left" style="min-height:30rem;position:relative"/>
     </div>
@@ -44,8 +46,11 @@
           <input type="checkbox" ng-model="vm.newTopic.featured" class="filled-in" id="topic-feature-box" checked="checked" />
           <label for="topic-feature-box">Featured</label>
         </div>
-        <div class="right">
-          <a class="clickable">Upload Images</a>
+        <div flow-init
+             flow-files-submitted="vm.upload( $files, $event, $flow )"
+             flow-file-success="$file.msg = $message"
+             class="right">
+          <span class="clickable" flow-btn><a>Upload Images</a></span>
           <a class="clickable" ng-click="vm.submitTopic()">Submit</a>
           <label class="right" style="padding-top:-20px" for="new-topic"><span>{{vm.newTopic.content.length}} Words in total</span></label>
         </div>

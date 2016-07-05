@@ -16,4 +16,10 @@ function topicsDetailCtrl ($scope, $http, $state, $document, appEvent, topicsSer
     }
     topicsService.fetchOne(vm.topicId).success(res=>vm.topicData = res);
   }
+  
+  function handleEditTopic(event,id){
+    $state.go("compose-edit",id);
+  }
+  appEvent.subscribe("editTopic",handleEditTopic,$scope);
+
 }

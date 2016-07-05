@@ -18,7 +18,7 @@ function topicsService ($http, $state, $document, APP_CONST) {
   }
 
   function fetchBySkipAndLimit(skip ,limit){
-    return $http.get(APP_CONST.api + 'v1/topics?sort=-time&skip=' + skip + '&limit=' + limit +'&select=-content');
+    return $http.get(APP_CONST.api + 'v1/topics?sort=-createdAt&skip=' + skip + '&limit=' + limit +'&select=-content');
   }
 /*
   function fetchOne(id){

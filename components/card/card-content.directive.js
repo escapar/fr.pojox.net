@@ -17,6 +17,7 @@ function jcCardContent(angularGridInstance){
     scope.vm.content = cardCtrl.content;
     scope.vm.showDst = cardCtrl.showDst;
     scope.vm.utcCn = cardCtrl.utcCn;
+    scope.vm.isAdmin = cardCtrl.isAdmin;
     scope.vm.hideProgress = cardCtrl.hideProgress;
     scope.vm.refreshInit();
   }
@@ -34,12 +35,11 @@ function jcCardContent(angularGridInstance){
     }
 
     function getTimeMessage(date){
-      var timeMessage = $filter('date')(new Date(date), 'dd/MM/yy HH:mm', checkAndOutputUTC(date));
+      var timeMessage = $filter('date')(new Date(date), 'yyyy-MM-dd hh:mm:ss', checkAndOutputUTC(date));
       if(vm.showDst){
         timeMessage += checkAndOutputUTC(date) === '+0100' ? ' Winter Time' : ' Summer Time';;
-      } else if(vm.utcCn){
-        timeMessage += ' CST';
       }
+
       return timeMessage;
     }
 

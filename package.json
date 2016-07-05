@@ -16,7 +16,9 @@
     "materialize-css": "^0.97.5",
     "jquery":"^2.2",
     "angular-jwt":"^0.0.9",
-    "ng-showdown":"^1.1.0"
+    "ng-showdown":"^1.1.0",
+    "ng-flow":"^2.1.4"
+
   },
   "devDependencies": {
   }

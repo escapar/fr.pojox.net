@@ -7,14 +7,20 @@ function aboutCtrl () {
     {
       title: 'Road to V2',
       time: 1456751208000,
-      text: 'To be developed as a MEAN Stacked micro-blog posting system.\nTODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Compose and Analysis module to add in further releases(optional)\n TODO: Optimize the efficiency of desktop masonry view. \nTODO: Unit Tests',
+      text: 'TODO:Build up a compiling workflow with Gulp + Browserify\nTODO:Comment and tag function to add in further releases \nTODO:Music section and Anime wallpapers switch\nTODO:(V3)Analysis module to add in further releases(optional)\nTODO:(V3)Unit Tests\nTODO:(V3+)Angular 2',
       featured: true
     },
     {
-      title: 'Recent Release v2 alpha 0',
+      title: 'v2 alpha1',
+      time: 1467733803777,
+      text: 'Image Uploading , Beats and Topics editing , bug fixes',
+      featured: true,
+    },
+    {
+      title: 'v2 alpha0',
       time: 1467649952611,
       text: 'Topic Modules with Markdown , ExpressJS Backend and UserLogin',
-      featured: false,
+      featured: false
     },
     {
       title: 'AngularJS Libs',

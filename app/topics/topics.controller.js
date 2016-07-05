@@ -52,5 +52,11 @@ function topicsCtrl ($scope, $http, $state, $document, appEvent, topicsService) 
     $state.go("topics-detail",id);
   }
 
-  $scope.$on("topicSelected",handleTopicSelected);
+  function handleEditTopic(event,id){
+    $state.go("compose-edit",id);
+  }
+
+  appEvent.subscribe("topicSelected",handleTopicSelected,$scope);
+  appEvent.subscribe("editTopic",handleEditTopic,$scope);
+
 }

@@ -1,10 +1,14 @@
-<div class="card hoverable" ng-click="vm.selectTopic(vm.jcTopic._id,$event)"  ng-class="vm.jcTopic.featured && vm.jcTopicBrief? 'light-blue darken-1' : 'white'">
+<div class="card hoverable" ng-click="vm.selectTopic(vm.jcTopic._id)"  ng-class="vm.jcTopic.featured && vm.jcTopicBrief? 'light-blue darken-1' : 'white'">
     <div ng-class="vm.jcTopicBrief? 'clickable' : noop">
     <div ng-if="vm.jcTopicBrief" class="card-image waves-effect waves-block waves-light">
       <img class="activator" ng-src="{{::vm.jcTopic.thumbnail}}"/>
     </div>
     <div class="card-content" ng-class="!vm.jcTopic.featured || !vm.jcTopicBrief? 'black-text':'white-text'">
-            <span class="card-title activator" ng-class="!vm.jcTopic.featured || !vm.jcTopicBrief? 'pink-text':'yellow-text'" style="margin-left:0">{{::vm.jcTopic.title}}</span>
+        <div class="right">
+            <a ng-if="vm.isAdmin" ng-click="vm.editTopic(vm.jcTopic._id)" class="modal-action waves-effect waves-green btn clickable">Edit</a>
+
+        </div>
+        <span class="card-title activator" ng-class="!vm.jcTopic.featured || !vm.jcTopicBrief? 'pink-text':'yellow-text'" style="margin-left:0">{{::vm.jcTopic.title}}</span>
             <p>
               <span>{{::vm.jcTopic.createdAt | date:"yyyy-MM-dd hh:mm:ss"}}</span>
             </p>

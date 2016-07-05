@@ -17,15 +17,18 @@ angular.module('app.components')
 
     ////////
 
-    function TopicCardCtrl($scope,$showdown,$location){
+    function TopicCardCtrl($scope,$showdown,$location,appService,appEvent){
       var vm = this;
       vm.selectTopic = selectTopic;
       vm.share = share;
+      vm.editTopic = editTopic;
+      vm.isAdmin = appService.isAdmin();
 
       init();
 
       ////////
       function init(){
+
         if(vm.jcTopic !== undefined){
           if(!vm.jcTopicBrief){
             vm.jcTopic.html = $showdown.makeHtml(vm.jcTopic.content);
@@ -33,10 +36,13 @@ angular.module('app.components')
         }
       }
 
-      function selectTopic(id,ev){
-        $scope.$emit('topicSelected',{id : id});
+      function selectTopic(id){
+        appEvent.publish('topicSelected',{id : id});
       }
 
+      function editTopic(id){
+        appEvent.publish('editTopic',{id : id});
+      }
 
       function share(){
         vm.nowUrl = 'https://src.moe/#'+$location.url();
