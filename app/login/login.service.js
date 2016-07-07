@@ -4,7 +4,8 @@ angular.module('app.modules')
 function loginService ($http, $state, $document, APP_CONST) {
     var service = {
         login : login,
-        reg : reg
+        reg : reg,
+        evict : evict
     }
     return service;
 
@@ -28,5 +29,9 @@ function loginService ($http, $state, $document, APP_CONST) {
             headers: {
                 "Content-Type": "application/json"
             }});
+    }
+
+    function evict(){
+        return $http.get(APP_CONST.api + 'evictCache');
     }
 }

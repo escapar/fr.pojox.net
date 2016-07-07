@@ -1,0 +1,68 @@
+<div class="container">
+<div class="row">
+
+    <div ng-repeat="link in vm.links track by $index"  class="col s12 m6 l6 ">
+        <div class="card {{::link.color}} z-depth-1 hoverable">
+            <div class="card-content">
+
+                <span class="card-title activator">
+
+                    <span ng-click="vm.open(link.href)">{{::link.title}}</span>
+                    <div class="right" ng-if="vm.isAdmin">
+                   <div class="btn" ng-click="vm.modify(link)">Modify</div>
+            <div ng-click="vm.del(link)" class="btn">Delete</div>
+                        </div>
+                </span>
+
+                <div  ng-click="vm.open(link.href)" class="row valign-wrapper clickable" style="border-top:1px">
+                    <div class="col s3">
+                        <img ng-src="{{::link.img}}" alt="" class="circle responsive-img link"> <!-- notice the "circle" class -->
+                    </div>
+                    <div class="col s9">
+                        <blockquote class="{{::link.color}} accent-1">
+                            <h5>{{::link.description}}</h5>
+                        </blockquote>
+                        <span class="right right-align">
+                        {{::link.alias}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <div ng-if="vm.isAdmin" class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card {{vm.newLink.color}} z-depth-1">
+            <div class="card-content">
+
+            <span class="card-title activator">
+                <input ng-model="vm.newLink.title" />
+            </span>
+
+            <div class="row valign-wrapper" style="border-top:1px">
+                    <div
+                            flow-init
+                            flow-files-submitted="vm.upload( $files, $event, $flow )"
+                            flow-file-success="$file.msg = $message"
+                            flow-btn
+                            class="col s2 clickable">
+                    <img ng-src="{{vm.newLink.img}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                    <blockquote class="{{vm.newLink.color}} accent-1">
+                        <input ng-model="vm.newLink.description" />
+                    </blockquote>
+                    <input width="20px" class="right" ng-model="vm.newLink.alias" />
+
+                </div>
+            </div>
+            </div>
+
+        </div>
+        <input width="20px" class="right" ng-model="vm.newLink.color" />
+        <input ng-model="vm.newLink.href" />
+        <button class="btn-large" ng-click="vm.submit()">Submit</button>
+    </div>
+</div>

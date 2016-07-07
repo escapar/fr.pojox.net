@@ -1,4 +1,4 @@
-angular.module('app.modules')
+angular.module('app')
     .service('appService',appService);
 
 function appService(jwtHelper,$http) {
@@ -13,7 +13,12 @@ function appService(jwtHelper,$http) {
     }
     
     function isAdmin(){
-        var payload = jwtHelper.decodeToken(localStorage.getItem('juicy_token'));
-        return payload.isAdmin;
+        if(localStorage.getItem('juicy_token')) {
+            var payload = jwtHelper.decodeToken(localStorage.getItem('juicy_token'));
+            if(payload) {
+                return payload.isAdmin;
+            }
+        }
+        return false;
     }
 }
