@@ -1,3 +1,6 @@
+#UPDATE
+
+This Repo has been merged into https://github.com/ThrowableFactory/Juicy-blog.    
 # JuicyBeats Frontend
 ##In the branch "Master"    
 To be developed as a MEAN Stacked micro-blog posting system.    
